@@ -10,6 +10,7 @@ import {
   CBadge,
   CContainer
 } from '@coreui/react'
+import Charts from '../charts/Charts'
 
 
 import Data from './Data'
@@ -63,7 +64,7 @@ const Dashboard = () => {
             <Data />
           </CTabPane>
           <CTabPane data-tab="data-chart">
-            456
+            <Charts></Charts>
           </CTabPane>
           <CTabPane data-tab="parameter-analysis">
             789

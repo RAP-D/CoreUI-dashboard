@@ -9,6 +9,7 @@ import {
   } from '@coreui/react'
 
   import CIcon from '@coreui/icons-react'
+  import Diagram from './Diagram/Diagram'
   
   
   
@@ -57,7 +58,8 @@ import {
                     </CRow>
                 </CCol>
                 <CCol xs="12" sm="6" lg="9">
-                    <CWidgetSimple header="title" text="1,123">
+                    <CWidgetSimple header="title" text="">
+                    <Diagram/>
                     </CWidgetSimple>
                 </CCol>
             </CRow>
