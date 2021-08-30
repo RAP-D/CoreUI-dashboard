@@ -10,6 +10,7 @@ import {
 
   import CIcon from '@coreui/icons-react'
   import Diagram from './Diagram/Diagram'
+  import './Data.css'
   
   
   
@@ -22,7 +23,8 @@ import {
   
             <CRow className="pt-10">
                 <CCol xs="12" sm="6" lg="3">
-                    <CRow className="pb-4">
+                    <CContainer className="cardContainer">
+                    <CRow>
                         <CContainer fluid className="align-self-center">
                             <strong style={{fontSize: 'medium'}}>Settings</strong>
                             <CIcon className="float-right" size={'lg'} name={'cilSettings'} />
@@ -56,7 +58,9 @@ import {
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
+                    </CContainer>
                 </CCol>
+            
                 <CCol xs="12" sm="6" lg="9">
                     <CWidgetSimple header="title" text="">
                     <Diagram/>

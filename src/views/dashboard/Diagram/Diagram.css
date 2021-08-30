@@ -13,7 +13,7 @@
 .nodeIcon{
     background-color: #28292D;
     border: 0.2rem solid #64B42C;
-    padding: 1.5rem;
+    padding: 1.2rem;
     height: 8rem;
     width: 8rem;
     border-radius: 50rem;
@@ -25,9 +25,16 @@
 
 .tower{
     height: 8rem !important;
+    width: 3rem !important;
 }
 
 .nodename{
     color: #C9C9C9;
     text-align: center;
 }
+
+.loku{
+    height: 3rem !important;
+    width: 3rem !important;
+}
+

@@ -50,10 +50,9 @@ const Dashboard = () => {
           </CNavItem>
 
           <CNavItem className="ml-auto pt-2">
-          <CContainer  >
-            Status:<CBadge className="ml-2"color="success"> Normal </CBadge></CContainer>
-          
-            
+            <CContainer  >
+              Status:<CBadge className="ml-2"color="success"> Normal </CBadge>
+            </CContainer>
           </CNavItem>
           
         </CNav>

@@ -23,7 +23,7 @@ const BulmaDiagram = ()=>{
                         <center>
                         <div className="heightadjust">
                                 <div className = "nodeIcon" ref={part1}>
-                                        <img className="icon is-medium" src={SolarPanel} alt="Generation" ref={generation}/>
+                                        <img className="icon loku" src={SolarPanel} alt="Generation" ref={generation}/>
                                         <div className="nodename">Generation</div>
                                 </div>
                         </div>
@@ -35,7 +35,7 @@ const BulmaDiagram = ()=>{
                         <center>
                         <div className="heightadjust">
                                 <div className = "nodeIcon" ref={part2}>
-                                        <img className="icon is-medium" src={PowerTower} alt="Grid" ref={grid} />
+                                        <img className="icon loku" src={PowerTower} alt="Grid" ref={grid} />
                                         <div className="nodename">Grid</div>
                                 </div>
                         </div>
@@ -44,7 +44,7 @@ const BulmaDiagram = ()=>{
                 <div className="column is-4"></div>
 
                 <div className="column is-4">
-                        <img className="icon tower is-large" src={Stortera} alt="StorTower" ref={storTower} />
+                        <img className="icon tower" src={Stortera} alt="StorTower" ref={storTower} />
                         <div>StorTower</div>
                 </div>
                 <div className="column is-4"></div>
@@ -53,7 +53,7 @@ const BulmaDiagram = ()=>{
                         <center>
                         <div className="heightadjust">
                                 <div className = "nodeIcon" ref={part3}>
-                                        <img className="icon is-medium" src={Battery} alt="Battery" ref={battery} />
+                                        <img className="icon loku" src={Battery} alt="Battery" ref={battery} />
                                         <div className="nodename">Battery</div>
                                 </div>
                         </div>
@@ -65,7 +65,7 @@ const BulmaDiagram = ()=>{
                         <center>
                         <div className="heightadjust">
                                 <div className = "nodeIcon" ref={part4}>
-                                        <img className="icon is-medium" src={Home} alt="Home" ref={home} />
+                                        <img className="icon loku" src={Home} alt="Home" ref={home} />
                                         <div className="nodename">Home</div>
                                 </div>
                         </div>
