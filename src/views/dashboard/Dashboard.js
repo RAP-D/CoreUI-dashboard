@@ -8,9 +8,16 @@ import {
   CNavLink,
   CNav,
   CBadge,
-  CContainer
+  CContainer,
+  CButton,
+  CRow
 } from '@coreui/react'
 import Charts from '../charts/Charts'
+import CIcon from '@coreui/icons-react'
+
+import {
+  cilSettings 
+} from '@coreui/icons'
 
 
 import Data from './Data'
@@ -47,6 +54,17 @@ const Dashboard = () => {
             <CNavLink data-tab="data-detail" className="text-success">
               Data Detail
             </CNavLink>
+          </CNavItem>
+
+          <CNavItem>
+            <button type="button" class="btn btn-success">
+              <CRow>
+              <i class="material-icons md-18 plus_icon" >add</i>
+                <CContainer>
+                  New Device
+                </CContainer>
+              </CRow>
+            </button>
           </CNavItem>
 
           <CNavItem className="ml-auto pt-2">

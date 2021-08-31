@@ -65,7 +65,23 @@ import {
                     <CWidgetSimple header="title" text="">
                     <Diagram/>
                     </CWidgetSimple>
+
+                    <CContainer className="float-right p-0">
+                    <button type="button" class="btn btn-dark">
+                        <CRow>
+                        <i class="material-icons md-18 plus_icon" >cloud_download</i>
+                            <CContainer>
+                            Download
+                            </CContainer>
+                        </CRow>
+                    </button>
+                    </CContainer>
+
                 </CCol>
+
+                
+                    
+                
             </CRow>
         </>
     )
