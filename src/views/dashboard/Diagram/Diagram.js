@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import Xarrow, { useXarrow } from "react-xarrows";
 import './Diagram.css';
 import SolarPanel from './solar-panel.svg';
@@ -7,23 +7,14 @@ import Stortera from './stortera.svg';
 import Battery from './battery-status.svg';
 import Home from './lightbulb.svg';
 
-const BulmaDiagram = ()=>{
-    const generation = useRef(null);
-    const grid = useRef(null);
-    const storTower = useRef(null);
-    const battery = useRef(null);
-    const home = useRef(null);
-    const part1 = useRef(null);
-    const part2 = useRef(null);
-    const part3 = useRef(null);
-    const part4 = useRef(null);
+const Diagram = ()=>{
         return(
             <div onLoad={useXarrow()} className="bulma-col columns is-2 is-multiline is-mobile">
                 <div className="column  is-4">
                         <center>
                         <div className="heightadjust">
-                                <div className = "nodeIcon" ref={part1}>
-                                        <img className="icon loku" src={SolarPanel} alt="Generation" ref={generation}/>
+                                <div className = "nodeIcon" id="Generation">
+                                        <img className="icon loku" src={SolarPanel} alt="Generation"/>
                                         <div className="nodename">Generation</div>
                                 </div>
                         </div>
@@ -34,8 +25,8 @@ const BulmaDiagram = ()=>{
                 <div className="column is-4">
                         <center>
                         <div className="heightadjust">
-                                <div className = "nodeIcon" ref={part2}>
-                                        <img className="icon loku" src={PowerTower} alt="Grid" ref={grid} />
+                                <div className = "nodeIcon" id="Grid">
+                                        <img className="icon loku" src={PowerTower} alt="Grid"/>
                                         <div className="nodename">Grid</div>
                                 </div>
                         </div>
@@ -44,7 +35,7 @@ const BulmaDiagram = ()=>{
                 <div className="column is-4"></div>
 
                 <div className="column is-4">
-                        <img className="icon tower" src={Stortera} alt="StorTower" ref={storTower} />
+                        <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/>
                         <div>StorTower</div>
                 </div>
                 <div className="column is-4"></div>
@@ -52,8 +43,8 @@ const BulmaDiagram = ()=>{
                 <div className="column is-4">
                         <center>
                         <div className="heightadjust">
-                                <div className = "nodeIcon" ref={part3}>
-                                        <img className="icon loku" src={Battery} alt="Battery" ref={battery} />
+                                <div className = "nodeIcon" id="Battery">
+                                        <img className="icon loku" src={Battery} alt="Battery"/>
                                         <div className="nodename">Battery</div>
                                 </div>
                         </div>
@@ -64,19 +55,19 @@ const BulmaDiagram = ()=>{
                 <div className="column is-4">
                         <center>
                         <div className="heightadjust">
-                                <div className = "nodeIcon" ref={part4}>
-                                        <img className="icon loku" src={Home} alt="Home" ref={home} />
+                                <div className = "nodeIcon" id="Home">
+                                        <img className="icon loku" src={Home} alt="Home"/>
                                         <div className="nodename">Home</div>
                                 </div>
                         </div>
                         </center>
                 </div>
-                <Xarrow start={storTower} startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end={part1} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
-                <Xarrow start={storTower} startAnchor= {["left", {position: "right", offset: {y: -20}}]} end={part2} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
-                <Xarrow start={storTower} startAnchor= {["right", {position: "left", offset: {y: 20}}]} end={part3} endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
-                <Xarrow start={storTower} startAnchor= {["left", {position: "right", offset: {y: 20}}]} end={part4} endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
+                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end="Generation" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
+                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: -20}}]} end="Grid" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
+                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: 20}}]} end="Battery" endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
+                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: 20}}]} end="Home" endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
             </div>
 
         )
     }
-export default BulmaDiagram;
+export default Diagram;
