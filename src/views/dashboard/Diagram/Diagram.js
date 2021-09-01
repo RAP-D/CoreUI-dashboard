@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import Xarrow from "react-xarrows";
+import Xarrow, { useXarrow } from "react-xarrows";
 import './Diagram.css';
 import SolarPanel from './solar-panel.svg';
 import PowerTower from './power-tower.svg';
@@ -18,7 +18,7 @@ const BulmaDiagram = ()=>{
     const part3 = useRef(null);
     const part4 = useRef(null);
         return(
-            <div className="bulma-col columns is-2 is-multiline is-mobile">
+            <div onLoad={useXarrow()} className="bulma-col columns is-2 is-multiline is-mobile">
                 <div className="column  is-4">
                         <center>
                         <div className="heightadjust">

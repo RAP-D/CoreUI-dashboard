@@ -9,17 +9,9 @@ import {
   CNav,
   CBadge,
   CContainer,
-  CButton,
   CRow
 } from '@coreui/react'
 import Charts from '../charts/Charts'
-import CIcon from '@coreui/icons-react'
-
-import {
-  cilSettings 
-} from '@coreui/icons'
-
-
 import Data from './Data'
 
 
