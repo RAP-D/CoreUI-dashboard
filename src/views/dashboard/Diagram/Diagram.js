@@ -62,7 +62,7 @@ const Diagram = ()=>{
                         </div>
                         </center>
                 </div>
-                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end="Generation" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.2em"}}>0.00 Kwh</div>}}/>
+                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end="Generation" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.2em" ,fontStyle: "italic"}}>0.00 Kwh</div>}}/>
                 <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: -20}}]} end="Grid" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.2em"}}>0.00 Kwh</div>}}/>
                 <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: 20}}]} end="Battery" endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.2em"}}>0.00 Kwh</div>}}/>
                 <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: 20}}]} end="Home" endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.2em"}}>0.00 Kwh</div>}}/>
