@@ -44,8 +44,7 @@
     "react-router-dom": "^5.2.0",
     "react-xarrows": "^2.0.2",
     "redux": "^4.0.5",
-    "sass": "^1.32.8",
-    "serve": "^12.0.0"
+    "sass": "^1.32.8"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -53,8 +52,7 @@
     "react-scripts": "^4.0.3"
   },
   "scripts": {
-    "start": "serve -s build",
-    "dev": "react-script start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",
