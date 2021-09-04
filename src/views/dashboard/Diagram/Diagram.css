@@ -1,15 +1,5 @@
 @import 'bulma/css/bulma.css';
 
-
-/* .bulma-col{
-    text-align: center;
-    padding: 20px;
-}
-
-.bulma-card{
-    padding: 0px;
-} */
-
 .nodeIcon{
     background-color: #28292D;
     border: 0.2rem solid #64B42C;
@@ -33,7 +23,7 @@
     text-align: center;
 }
 
-.loku{
+.resize{
     height: 3rem !important;
     width: 3rem !important;
 }
