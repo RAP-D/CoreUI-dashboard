@@ -75,7 +75,7 @@ const Diagram = ()=>{
                      <CContainer>
                              <CRow className="justify-content-center">
                                         <CCol xs={6}>
-                                                <CContainer className="float-left heightadjust">
+                                                <CContainer className="float-left p-0 heightadjust">
                                                         <CContainer className="nodeIcon" id="Generation">
                                                                 <img className="icon loku" src={SolarPanel} alt="Generation"/><br/>
                                                                 <span className="nodeName">Generation</span>
@@ -86,7 +86,7 @@ const Diagram = ()=>{
                                         
 
                                         <CCol xs={6}>
-                                        <CContainer className="float-right heightadjust">
+                                        <CContainer className="float-right p-0 heightadjust">
                                                 <CContainer className="nodeIcon" id="Grid">
                                                                 <img className="icon loku" src={PowerTower} alt="Grid"/><br/>
                                                                 <span className="nodeName">Grid</span>
@@ -103,7 +103,7 @@ const Diagram = ()=>{
                              </CRow>
                              <CRow className="justify-content-center">
                                         <CCol xs={6}>
-                                        <CContainer className="float-left heightadjust">
+                                        <CContainer className="float-left p-0 heightadjust">
                                                         <CContainer className="nodeIcon" id="Battery">
                                                                 <img className="icon loku" src={Battery} alt="Battery"/><br/>
                                                                 <span className="nodeName">Battery</span>
@@ -114,7 +114,7 @@ const Diagram = ()=>{
                                        
 
                                         <CCol xs={6}>
-                                        <CContainer className="float-right heightadjust">
+                                        <CContainer className="float-right p-0 heightadjust">
                                                         <CContainer className="nodeIcon" id="Home">
                                                                 <img className="icon loku" src={Home} alt="Home"/><br/>
                                                                 <span className="nodeName">Home</span>
