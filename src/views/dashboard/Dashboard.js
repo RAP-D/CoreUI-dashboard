@@ -13,6 +13,7 @@ import {
 } from '@coreui/react'
 import Charts from '../charts/Charts'
 import Data from './Data'
+import './Dashboard.css'
 
 
 const Dashboard = () => {
