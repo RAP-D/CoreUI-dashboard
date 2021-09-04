@@ -6,6 +6,7 @@ import {
     CContainer,
     
     
+    
   } from '@coreui/react'
 
   import CIcon from '@coreui/icons-react'
@@ -19,8 +20,6 @@ import {
   const Data = () => {
     return (
       <>
-  
-  
             <CRow className="pt-10">
                 <CCol xs="12" sm="6" lg="3">
                     <CContainer className="cardContainer">
@@ -62,26 +61,30 @@ import {
                 </CCol>
             
                 <CCol xs="12" sm="6" lg="9">
-                    <CWidgetSimple header="title" text="">
-                    <Diagram/>
-                    </CWidgetSimple>
-
-                    <CContainer className="float-right p-0">
-                    <button type="button" className="btn btn-dark">
-                        <CRow>
-                        <i className="material-icons md-18 plus_icon" >cloud_download</i>
-                            <CContainer>
-                            Download
-                            </CContainer>
-                        </CRow>
-                    </button>
+                    <CRow>
+                    <CContainer fluid>
+                        <CWidgetSimple header="title">
+                            <Diagram/>
+                        </CWidgetSimple> 
                     </CContainer>
-
-                </CCol>
-
-                
-                    
-                
+                    </CRow>
+                    <CRow>
+                    <CCol xs="auto" className="me-auto"></CCol>
+                    <CCol xs="auto">
+                        <CContainer className="float-right p-0">
+                            <button type="button" className="btn btn-dark">
+                            <CRow>
+                            <i className="material-icons md-18 plus_icon" >cloud_download</i>
+                                <CContainer>
+                                Download
+                                </CContainer>
+                            </CRow>
+                            </button>
+                        </CContainer>
+                    </CCol>
+                        
+                    </CRow>
+                </CCol>   
             </CRow>
         </>
     )

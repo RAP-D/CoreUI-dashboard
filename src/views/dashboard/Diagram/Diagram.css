@@ -1,14 +1,14 @@
 @import 'bulma/css/bulma.css';
 
 
-.bulma-col{
+/* .bulma-col{
     text-align: center;
     padding: 20px;
 }
 
 .bulma-card{
     padding: 0px;
-}
+} */
 
 .nodeIcon{
     background-color: #28292D;
@@ -16,7 +16,7 @@
     padding: 1.2rem;
     height: 8rem;
     width: 8rem;
-    border-radius: 50rem;
+    border-radius: 50%;
 }
 
 .heightadjust{
