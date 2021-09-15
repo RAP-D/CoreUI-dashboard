@@ -12,7 +12,7 @@ import { CContainer, CRow, CCol } from "@coreui/react";
 const Diagram = ()=>{
         return(
              <Xwrapper>   
-             <ResizeObserver
+             <ResizeObserver    
                 onResize={useXarrow()}>
                      <CContainer>
                              <CRow className="justify-content-center">
@@ -24,9 +24,6 @@ const Diagram = ()=>{
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
-
-                                        
-
                                         <CCol xs={6}>
                                         <CContainer className="float-right heightadjust">
                                                 <CContainer className="nodeIcon" id="Grid">
@@ -52,9 +49,6 @@ const Diagram = ()=>{
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
-
-                                       
-
                                         <CCol xs={6}>
                                         <CContainer className="float-right heightadjust">
                                                         <CContainer className="nodeIcon" id="Home">
