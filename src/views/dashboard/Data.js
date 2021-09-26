@@ -60,28 +60,28 @@ const Data = () => {
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={outputLoad.toString()}>
+                            <CWidgetSimple header="title" text={outputLoad.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={totalEnergy.toString()}>
+                            <CWidgetSimple header="title" text={totalEnergy.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={batteryVoltage.toString()}>
+                            <CWidgetSimple header="title" text={batteryVoltage.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={bisVoltage.toString()}>
+                            <CWidgetSimple header="title" text={bisVoltage.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
