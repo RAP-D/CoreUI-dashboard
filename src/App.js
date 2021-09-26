@@ -17,12 +17,11 @@ const Register = React.lazy(() => import('./views/pages/register/Register'));
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'));
 
-fetch('https://file.io/7rWHtuuagvAA', {
-	method: 'get',
-  mode:'no-cors'
+fetch('https://api.jsonbin.io/b/614180c8aa02be1d44488791', {
+	method: 'get'
 })
 .then(response=>response.json())
-.then(j=>{console.log(j)})
+.then(j=>{JSON.parse(j)})
 .catch(function(err) {
 	// Error :(
 });
