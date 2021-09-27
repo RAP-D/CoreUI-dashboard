@@ -19,8 +19,6 @@ import './Dashboard.css'
 const Dashboard = () => {
   return (
     <>
-
-
       <CTabs activeTab="statistical-overview">
 
         <CNav variant="tabs" >
@@ -65,7 +63,6 @@ const Dashboard = () => {
               Status:<CBadge className="ml-2"color="success"> Normal </CBadge>
             </CContainer>
           </CNavItem>
-          
         </CNav>
 
 

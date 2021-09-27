@@ -57,9 +57,9 @@ const Data = () => {
         }]
     }
     const [data, setData] = useState(initialState);
-    const MINUTE_MS =180000;
+    const MINUTE_MS =3000;
     const getData=()=>{
-        fetch('https://api.jsonbin.io/b/615188764a82881d6c564066/1', {
+        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
             method: 'get'
         })
         .then(response=>response.json())
@@ -71,7 +71,7 @@ const Data = () => {
         });
     }
     useEffect(() => {
-        //getData();
+        getData();
         const interval = setInterval(() => {
             getData();
         }, MINUTE_MS);
