@@ -67,7 +67,7 @@ const Data = () => {
     const MINUTE_MS =3000;
     
     const getData = () => {
-        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
+        fetch('http://localhost:3000/', {
             method: 'get'
         })
         .then(response=>response.json())
@@ -81,22 +81,18 @@ const Data = () => {
                         case 0:
                             data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
                             data.diagram[i].endAnchor ="bottom";
-                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
                             break;
                         case 1:
                             data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
                             data.diagram[i].endAnchor ="bottom";
-                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
                             break;
                         case 2:
                             data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
                             data.diagram[i].endAnchor ="top";
-                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
                             break;
                         default:
                             data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
                             data.diagram[i].endAnchor ="top";
-                            data.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
                             break;
                     }
                 }else if(element.direction==='in'){
@@ -107,22 +103,18 @@ const Data = () => {
                         case 0:
                             data.diagram[i].startAnchor ="bottom";
                             data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
-                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
                             break;
                         case 1:
                             data.diagram[i].startAnchor ="bottom";
                             data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
-                            data.diagram[i].style ={ fontSize: "1.3em", marginRight: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
                             break;
                         case 2:
                             data.diagram[i].startAnchor ="top";
                             data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
-                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"}
                             break;
                         default:
                             data.diagram[i].startAnchor ="top";
                             data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
-                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"};
                             break;
                     }
                 }else{
@@ -133,22 +125,18 @@ const Data = () => {
                         case 0:
                             data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
                             data.diagram[i].endAnchor ="bottom";
-                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
                             break;
                         case 1:
                             data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
                             data.diagram[i].endAnchor ="bottom";
-                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
                             break;
                         case 2:
                             data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
                             data.diagram[i].endAnchor ="top";
-                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
                             break;
                         default:
                             data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
                             data.diagram[i].endAnchor ="top";
-                            data.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
                             break;
                     }
                 }
