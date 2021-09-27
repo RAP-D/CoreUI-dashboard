@@ -55,8 +55,8 @@ const Diagram = ({data})=>{
                                         <CCol xs={6}>
                                                 <CContainer className="float-right heightadjust">
                                                         <CRow>
-                                                                <CCol xs={6}>
-                                                                        <span style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</span>
+                                                                <CCol lg={6}>
+                                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</p>
                                                                 </CCol>
                                                         </CRow>                                                
                                                         <CContainer className="nodeIcon" id="Home">

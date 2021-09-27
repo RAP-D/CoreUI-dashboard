@@ -67,7 +67,7 @@ const Data = () => {
     const MINUTE_MS =3000;
     
     const getData = () => {
-        fetch('http://localhost:3000/', {
+        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
             method: 'get'
         })
         .then(response=>response.json())
