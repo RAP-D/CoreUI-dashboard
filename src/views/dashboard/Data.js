@@ -66,99 +66,94 @@ const Data = () => {
     const [data, setData] = useState(initialState);
     const MINUTE_MS =3000;
     
-
-    const prosessData = (data) => {
-        const prosessedData=data;
-        data.diagram.forEach((element,i) => {
-            if(element.direction==='no'){
-                prosessedData.diagram[i].width=0;
-                prosessedData.diagram[i].start="StorTower";
-                prosessedData.diagram[i].end=element.name;
-                switch(i){
-                    case 0:
-                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-                        prosessedData.diagram[i].endAnchor ="bottom";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
-                        break;
-                    case 1:
-                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-                        prosessedData.diagram[i].endAnchor ="bottom";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
-                        break;
-                    case 2:
-                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-                        prosessedData.diagram[i].endAnchor ="top";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
-                        break;
-                    default:
-                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-                        prosessedData.diagram[i].endAnchor ="top";
-                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
-                        break;
-                }
-            }else if(element.direction==='in'){
-                prosessedData.diagram[i].width=4;
-                prosessedData.diagram[i].start=element.name;
-                prosessedData.diagram[i].end="StorTower"
-                switch(i){
-                    case 0:
-                        prosessedData.diagram[i].startAnchor ="bottom";
-                        prosessedData.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
-                        break;
-                    case 1:
-                        prosessedData.diagram[i].startAnchor ="bottom";
-                        prosessedData.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
-                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginRight: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
-                        break;
-                    case 2:
-                        prosessedData.diagram[i].startAnchor ="top";
-                        prosessedData.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"}
-                        break;
-                    default:
-                        prosessedData.diagram[i].startAnchor ="top";
-                        prosessedData.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"};
-                        break;
-                }
-            }else{
-                prosessedData.diagram[i].width=4;
-                prosessedData.diagram[i].start="StorTower";
-                prosessedData.diagram[i].end=element.name;
-                switch(i){
-                    case 0:
-                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-                        prosessedData.diagram[i].endAnchor ="bottom";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
-                        break;
-                    case 1:
-                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-                        prosessedData.diagram[i].endAnchor ="bottom";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
-                        break;
-                    case 2:
-                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-                        prosessedData.diagram[i].endAnchor ="top";
-                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
-                        break;
-                    default:
-                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-                        prosessedData.diagram[i].endAnchor ="top";
-                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
-                        break;
-                }
-            }
-        })
-        setData(prosessedData);
-    }
     const getData = () => {
-        fetch('http://localhost:3000/', {
+        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
             method: 'get'
         })
         .then(response=>response.json())
         .then(data=>{
-            prosessData(data)  
+            data.diagram.forEach((element,i) => {
+                if(element.direction==='no'){
+                    data.diagram[i].width=0;
+                    data.diagram[i].start="StorTower";
+                    data.diagram[i].end=element.name;
+                    switch(i){
+                        case 0:
+                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+                            data.diagram[i].endAnchor ="bottom";
+                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
+                            break;
+                        case 1:
+                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+                            data.diagram[i].endAnchor ="bottom";
+                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
+                            break;
+                        case 2:
+                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+                            data.diagram[i].endAnchor ="top";
+                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
+                            break;
+                        default:
+                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+                            data.diagram[i].endAnchor ="top";
+                            data.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
+                            break;
+                    }
+                }else if(element.direction==='in'){
+                    data.diagram[i].width=4;
+                    data.diagram[i].start=element.name;
+                    data.diagram[i].end="StorTower"
+                    switch(i){
+                        case 0:
+                            data.diagram[i].startAnchor ="bottom";
+                            data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
+                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
+                            break;
+                        case 1:
+                            data.diagram[i].startAnchor ="bottom";
+                            data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
+                            data.diagram[i].style ={ fontSize: "1.3em", marginRight: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
+                            break;
+                        case 2:
+                            data.diagram[i].startAnchor ="top";
+                            data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
+                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"}
+                            break;
+                        default:
+                            data.diagram[i].startAnchor ="top";
+                            data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
+                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"};
+                            break;
+                    }
+                }else{
+                    data.diagram[i].width=4;
+                    data.diagram[i].start="StorTower";
+                    data.diagram[i].end=element.name;
+                    switch(i){
+                        case 0:
+                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+                            data.diagram[i].endAnchor ="bottom";
+                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
+                            break;
+                        case 1:
+                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+                            data.diagram[i].endAnchor ="bottom";
+                            data.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
+                            break;
+                        case 2:
+                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+                            data.diagram[i].endAnchor ="top";
+                            data.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
+                            break;
+                        default:
+                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+                            data.diagram[i].endAnchor ="top";
+                            data.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
+                            break;
+                    }
+                }
+            })
+            setData(data)  
         })
         .catch(function(err) {
             console.log(err)
