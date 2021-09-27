@@ -10,13 +10,6 @@ import ResizeObserver from 'rc-resize-observer';
 import { CContainer, CRow, CCol } from "@coreui/react";
 
 const Diagram = ({data})=>{
-        const hideArrow=(source)=>{
-                if(!source.direction){
-                     return 0;
-                }else{
-                     return 4;   
-                }
-        }
         return(
              <Xwrapper>   
              <ResizeObserver    
@@ -65,10 +58,10 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end={data.generation.name} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={hideArrow(data.generation)} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{data.generation.value.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: -20}}]} end={data.grid.name} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={hideArrow(data.grid)} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{data.grid.value.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: 20}}]} end={data.battery.name} endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={hideArrow(data.battery)} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginTop: "5rem",color: "#64B42C"}}>{data.battery.value.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: 20}}]} end={data.consumption.name} endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={hideArrow(data.consumption)} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginTop: "5rem",color: "#64B42C"}}>{data.consumption.value.toString()} KWh</div>}}/>
+                                <Xarrow start={data[0].start} startAnchor= {data[0].startAnchor}  end={data[0].end} endAnchor={data[0].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[0].width} labels={{start:<div style={data[0].style}>{data[0].value.toString()} KWh</div>}}/>
+                                <Xarrow start={data[1].start} startAnchor= {data[1].startAnchor} end={data[1].end} endAnchor={data[1].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[1].width} labels={{start:<div style={data[1].style}>{data[1].value.toString()} KWh</div>}}/>
+                                <Xarrow start={data[2].start} startAnchor= {data[2].startAnchor} end={data[2].end} endAnchor={data[2].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[2].width} labels={{start:<div style={data[2].style}>{data[2].value.toString()} KWh</div>}}/>
+                                <Xarrow start={data[3].start} startAnchor= {data[3].startAnchor} end={data[3].end} endAnchor={data[3].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[3].width} labels={{start:<div style={data[3].style}>{data[3].value.toString()} KWh</div>}}/>
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>

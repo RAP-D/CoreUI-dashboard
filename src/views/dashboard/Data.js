@@ -13,58 +13,152 @@ import { useEffect,useState } from 'react';
 const Data = () => {
     const initialState={
         cards: [{
-            outputLoad:{
                 name:"Output Load",
                 value: 0.00
-            }
-        },{
-            totalEnergy:{
+            },{
                 name:"Total Energy",
                 value: 0.00
-            }
-        },{
-            batteryVoltage:{
+            },{
                 name:"Battery Voltage",
                 value: 0.00
-            }
-        },{
-            bisVoltage:{
+            },{
                 name:"BUS Voltage",
                 value: 0.00
             }
-        }],
+        ],
         diagram: [{
-            generation:{
-                name:"Generation",
-                direction: false,
-                value: 0.00
-            },
-            grid: {
-                name:"Grid",
-                direction: false,
-                value: 0.00
-            },
-            battery: {
+                value: 0.00,
+                start:"",
+                end:"",
+                startAnchor:"",
+                endAnchor:"",
+                style:{},
+                width:0,
+            },{
+                value: 0.00,
+                start:"",
+                end:"",
+                startAnchor:"",
+                endAnchor:"",
+                style:{},
+                width:0,
+            },{
                 name:"Battery",
-                direction: false,
+                start:"",
+                end:"",
+                startAnchor:"",
+                endAnchor:"",
+                style:{},
+                width:0,
                 value: 0.00
-            },
-            consumption: {
+            },{
                 name:"Home",
-                direction: false,
+                start:"",
+                end:"",
+                startAnchor:"",
+                endAnchor:"",
+                style:{},
+                width:0,
                 value: 0.00
             }
-        }]
+        ]
     }
     const [data, setData] = useState(initialState);
     const MINUTE_MS =3000;
-    const getData=()=>{
-        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
+    
+
+    const prosessData = (data) => {
+        const prosessedData=data;
+        data.diagram.forEach((element,i) => {
+            if(element.direction==='no'){
+                prosessedData.diagram[i].width=0;
+                prosessedData.diagram[i].start="StorTower";
+                prosessedData.diagram[i].end=element.name;
+                switch(i){
+                    case 0:
+                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+                        prosessedData.diagram[i].endAnchor ="bottom";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
+                        break;
+                    case 1:
+                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+                        prosessedData.diagram[i].endAnchor ="bottom";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
+                        break;
+                    case 2:
+                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+                        prosessedData.diagram[i].endAnchor ="top";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
+                        break;
+                    default:
+                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+                        prosessedData.diagram[i].endAnchor ="top";
+                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
+                        break;
+                }
+            }else if(element.direction==='in'){
+                prosessedData.diagram[i].width=4;
+                prosessedData.diagram[i].start=element.name;
+                prosessedData.diagram[i].end="StorTower"
+                switch(i){
+                    case 0:
+                        prosessedData.diagram[i].startAnchor ="bottom";
+                        prosessedData.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
+                        break;
+                    case 1:
+                        prosessedData.diagram[i].startAnchor ="bottom";
+                        prosessedData.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
+                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginRight: "20.05rem", marginTop: "5.4rem",color: "#64B42C"}
+                        break;
+                    case 2:
+                        prosessedData.diagram[i].startAnchor ="top";
+                        prosessedData.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"}
+                        break;
+                    default:
+                        prosessedData.diagram[i].startAnchor ="top";
+                        prosessedData.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "20.05rem", marginBottom: "5.4rem",color: "#64B42C"};
+                        break;
+                }
+            }else{
+                prosessedData.diagram[i].width=4;
+                prosessedData.diagram[i].start="StorTower";
+                prosessedData.diagram[i].end=element.name;
+                switch(i){
+                    case 0:
+                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+                        prosessedData.diagram[i].endAnchor ="bottom";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}
+                        break;
+                    case 1:
+                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+                        prosessedData.diagram[i].endAnchor ="bottom";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"};
+                        break;
+                    case 2:
+                        prosessedData.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+                        prosessedData.diagram[i].endAnchor ="top";
+                        prosessedData.diagram[i].style = { fontSize: "1.3em", marginRight: "4rem", marginTop: "4rem",color: "#64B42C"}
+                        break;
+                    default:
+                        prosessedData.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+                        prosessedData.diagram[i].endAnchor ="top";
+                        prosessedData.diagram[i].style ={ fontSize: "1.3em", marginLeft: "4rem", marginTop: "4rem",color: "#64B42C"}
+                        break;
+                }
+            }
+        })
+        setData(prosessedData);
+    }
+    const getData = () => {
+        fetch('http://localhost:3000/', {
             method: 'get'
         })
         .then(response=>response.json())
         .then(data=>{
-            setData(data)    
+            prosessData(data)  
         })
         .catch(function(err) {
             console.log(err)
@@ -91,28 +185,28 @@ const Data = () => {
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header={data.cards[0].outputLoad.name} text={data.cards[0].outputLoad.value.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[0].name} text={data.cards[0].value.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header={data.cards[1].totalEnergy.name} text={data.cards[1].totalEnergy.value.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[1].name} text={data.cards[1].value.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header={data.cards[2].batteryVoltage.name} text={data.cards[2].batteryVoltage.value.toString()+" V"}>
+                            <CWidgetSimple header={data.cards[2].name} text={data.cards[2].value.toString()+" V"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header={data.cards[3].bisVoltage.name} text={data.cards[3].bisVoltage.value.toString()+" V"}>
+                            <CWidgetSimple header={data.cards[3].name} text={data.cards[3].value.toString()+" V"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
@@ -123,7 +217,7 @@ const Data = () => {
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="title">
-                            <Diagram data={data.diagram[0]}/>
+                            <Diagram data={data.diagram}/>
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>
