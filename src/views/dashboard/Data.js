@@ -11,36 +11,67 @@ import './Data.css'
 import { useEffect,useState } from 'react';
 
 const Data = () => {
-    const [outputLoad, setOutputLoad] = useState(0);
-    const [totalEnergy, setTotalEnergy] = useState(0);
-    const [batteryVoltage, setBatteryVoltage] = useState(0);
-    const [bisVoltage, setBisVoltage] = useState(0);
-    const [genaration, setGenaration] = useState(0);
-    const [grid, setGrid] = useState(0);
-    const [battery, setBattery] = useState(0);
-    const [consumption, setConsumption] = useState(0);
+    const initialState={
+        cards: [{
+            outputLoad:{
+                name:"Output Load",
+                value: 0.00
+            }
+        },{
+            totalEnergy:{
+                name:"Total Energy",
+                value: 0.00
+            }
+        },{
+            batteryVoltage:{
+                name:"Battery Voltage",
+                value: 0.00
+            }
+        },{
+            bisVoltage:{
+                name:"BUS Voltage",
+                value: 0.00
+            }
+        }],
+        diagram: [{
+            generation:{
+                name:"Generation",
+                direction: false,
+                value: 0.00
+            },
+            grid: {
+                name:"Grid",
+                direction: false,
+                value: 0.00
+            },
+            battery: {
+                name:"Battery",
+                direction: false,
+                value: 0.00
+            },
+            consumption: {
+                name:"Home",
+                direction: false,
+                value: 0.00
+            }
+        }]
+    }
+    const [data, setData] = useState(initialState);
     const MINUTE_MS =180000;
     const getData=()=>{
-        fetch('https://api.jsonbin.io/b/614180c8aa02be1d44488791', {
+        fetch('https://api.jsonbin.io/b/615188764a82881d6c564066/1', {
             method: 'get'
         })
         .then(response=>response.json())
-        .then(j=>{
-            setOutputLoad(j.cards[0].outputLoad.value);
-            setTotalEnergy(j.cards[1].totalEnergy.value);
-            setBatteryVoltage(j.cards[2].batteryVoltage.value);
-            setBisVoltage(j.cards[3].bisVoltage.value);
-            setGenaration(j.diagram[0].genaration.value);
-            setGrid(j.diagram[0].grid.value);
-            setBattery(j.diagram[0].battery.value);
-            setConsumption(j.diagram[0].consumption.value)
+        .then(data=>{
+            setData(data)    
         })
         .catch(function(err) {
-        // Error :(
+            console.log(err)
         });
     }
     useEffect(() => {
-        getData();
+        //getData();
         const interval = setInterval(() => {
             getData();
         }, MINUTE_MS);
@@ -60,28 +91,28 @@ const Data = () => {
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={outputLoad.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[0].outputLoad.name} text={data.cards[0].outputLoad.value.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={totalEnergy.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[1].totalEnergy.name} text={data.cards[1].totalEnergy.value.toString()+" KWh"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={batteryVoltage.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[2].batteryVoltage.name} text={data.cards[2].batteryVoltage.value.toString()+" V"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
 
                     <CRow>
                         <CContainer fluid>
-                            <CWidgetSimple header="title" text={bisVoltage.toString()+" KWh"}>
+                            <CWidgetSimple header={data.cards[3].bisVoltage.name} text={data.cards[3].bisVoltage.value.toString()+" V"}>
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
@@ -92,7 +123,7 @@ const Data = () => {
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="title">
-                            <Diagram genaration={genaration} grid={grid} battery={battery} consumption={consumption}/>
+                            <Diagram data={data.diagram[0]}/>
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>

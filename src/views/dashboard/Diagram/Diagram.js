@@ -9,7 +9,21 @@ import Home from './lightbulb.svg';
 import ResizeObserver from 'rc-resize-observer';
 import { CContainer, CRow, CCol } from "@coreui/react";
 
-const Diagram = ({genaration,grid,battery,consumption})=>{
+const Diagram = ({data})=>{
+        const getArrowEnd=(source)=>{
+                if(source.direction){
+                     return source.name;
+                }else{
+                     return "";   
+                }
+        }
+        const getArrowStart=(source)=>{
+                if(source.direction){
+                     return "StorTower";   
+                }else{
+                     return "";   
+                }
+        }
         return(
              <Xwrapper>   
              <ResizeObserver    
@@ -58,10 +72,10 @@ const Diagram = ({genaration,grid,battery,consumption})=>{
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end="Generation" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{genaration.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: -20}}]} end="Grid" endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{grid.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["right", {position: "left", offset: {y: 20}}]} end="Battery" endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginTop: "5rem",color: "#64B42C"}}>{battery.toString()} KWh</div>}}/>
-                                <Xarrow start="StorTower" startAnchor= {["left", {position: "right", offset: {y: 20}}]} end="Home" endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginTop: "5rem",color: "#64B42C"}}>{consumption.toString()} KWh</div>}}/>
+                                <Xarrow start={getArrowStart(data.generation)} startAnchor= {["right", {position: "left", offset: {y: -20}}]}  end={getArrowEnd(data.generation)} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{data.generation.value.toString()} KWh</div>}}/>
+                                <Xarrow start={getArrowStart(data.grid)} startAnchor= {["left", {position: "right", offset: {y: -20}}]} end={getArrowEnd(data.grid)} endAnchor="bottom" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginBottom: "2rem",color: "#64B42C"}}>{data.grid.value.toString()} KWh</div>}}/>
+                                <Xarrow start={getArrowStart(data.battery)} startAnchor= {["right", {position: "left", offset: {y: 20}}]} end={getArrowEnd(data.battery)} endAnchor="top" color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginRight: "4rem", marginTop: "5rem",color: "#64B42C"}}>{data.battery.value.toString()} KWh</div>}}/>
+                                <Xarrow start={getArrowStart(data.consumption)} startAnchor= {["left", {position: "right", offset: {y: 20}}]} end={getArrowEnd(data.consumption)} endAnchor="top"color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} labels={{start:<div style={{ fontSize: "1.3em", marginLeft: "4rem", marginTop: "5rem",color: "#64B42C"}}>{data.consumption.value.toString()} KWh</div>}}/>
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>
