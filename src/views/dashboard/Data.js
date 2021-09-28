@@ -161,7 +161,7 @@ const Data = () => {
                     <CContainer className="cardContainer">
                     <CRow>
                         <CContainer fluid className="align-self-center">
-                            <strong style={{fontSize: 'medium'}}>Settings</strong>
+                            <strong style={{fontSize: 'medium'}}>Statistical data</strong>
                             <CIcon className="float-right" size={'lg'} name={'cilSettings'} />
                         </CContainer>
                     </CRow>
@@ -199,7 +199,7 @@ const Data = () => {
                 <CCol xs="12" sm="6" lg="9">
                     <CRow>
                     <CContainer fluid>
-                        <CWidgetSimple header="title">
+                        <CWidgetSimple header="">
                             <Diagram data={data.diagram}/>
                         </CWidgetSimple> 
                     </CContainer>
