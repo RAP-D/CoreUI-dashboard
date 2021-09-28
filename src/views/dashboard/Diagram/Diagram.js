@@ -44,7 +44,7 @@ const Diagram = ({data})=>{
                                                 <CContainer className="float-right heightadjust">
                                                         <CContainer className="nodeIcon" id="Grid">
                                                                 <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
-                                                                <span className="nodeName">Grid</span>
+                                                                <span className="nodeName">Grid | Overload</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
@@ -69,7 +69,7 @@ const Diagram = ({data})=>{
                                 <CCol xs={4}>
                                         <CContainer className="heightadjust">
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
-                                                <span className="nodeName">StorTower</span>
+                                                <span className="nodeName">Charging</span>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={4}>
@@ -92,7 +92,7 @@ const Diagram = ({data})=>{
                                                 
                                                         <CContainer className="nodeIcon" id="Battery">
                                                                 <img className="icon resize" src={Battery} alt="Battery"/><br/>
-                                                                <span className="nodeName">Battery</span>
+                                                                <span className="nodeName">DSR Loads</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
@@ -116,7 +116,7 @@ const Diagram = ({data})=>{
                                                                                                       
                                                         <CContainer className="nodeIcon" id="Home">
                                                                 <img className="icon resize" src={Home} alt="Home"/><br/>
-                                                                <span className="nodeName">Home</span>
+                                                                <span className="nodeName">Critical Loads</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
