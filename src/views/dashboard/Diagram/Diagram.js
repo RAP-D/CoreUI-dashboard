@@ -14,8 +14,14 @@ const Diagram = ({data})=>{
              <Xwrapper>   
              <ResizeObserver    
                 onResize={useXarrow()}>
-                     <CContainer>
+                     <CContainer style={{paddingTop:"5rem", paddingBottom:"5rem"}}>
                              <CRow className="justify-content-center">
+
+                                        <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
+                                        </CCol>
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                         <CContainer className="nodeIcon" id="Generation">
@@ -29,7 +35,7 @@ const Diagram = ({data})=>{
                                                         <p style={{color: "#64B42C",fontSize:20}}>{data[0].value} KWh</p>
                                                 </CContainer> */}
                                         </CCol> 
-                                        <CCol xs={4}>
+                                        <CCol xs={2}>
                                                 <CContainer>
                                                         <p></p>
                                                 </CContainer>
@@ -46,6 +52,11 @@ const Diagram = ({data})=>{
                                                                 <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
                                                                 <span className="nodeName">Grid | Overload</span>
                                                         </CContainer>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
                                                 </CContainer>
                                         </CCol>
 
@@ -87,6 +98,12 @@ const Diagram = ({data})=>{
                                 </CCol>  */}
                              </CRow>
                              <CRow className="justify-content-center">
+
+                                        <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
+                                        </CCol>
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                 
@@ -101,7 +118,7 @@ const Diagram = ({data})=>{
                                                         <p></p>
                                                 </CContainer>
                                         </CCol>
-                                        <CCol xs={4}>
+                                        <CCol xs={2}>
                                                 <CContainer>
                                                         <p></p>
                                                 </CContainer>
@@ -118,6 +135,11 @@ const Diagram = ({data})=>{
                                                                 <img className="icon resize" src={Home} alt="Home"/><br/>
                                                                 <span className="nodeName">Critical Loads</span>
                                                         </CContainer>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
                                                 </CContainer>
                                         </CCol>
                              </CRow>
