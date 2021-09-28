@@ -25,7 +25,7 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={2}>
-                                                <CContainer className="line-label1"> 
+                                                <CContainer className="line-label1" style={{position:"absolute", bottom:"0"}}> 
                                                         <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[0].value} KWh</p>
                                                 </CContainer>
                                         </CCol> 
@@ -35,7 +35,7 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={2}>
-                                                <CContainer className="line-label2">
+                                                <CContainer className="line-label2" style={{position:"absolute", bottom:"0"}}>
                                                         <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[1].value} KWh</p>
                                                 </CContainer>
                                         </CCol>
@@ -59,8 +59,8 @@ const Diagram = ({data})=>{
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={2}>
-                                        <CContainer>
-                                                <p></p>
+                                        <CContainer className="line-label3" style={{position:"absolute", bottom:"0"}}>
+                                                <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[2].value} KWh</p>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={4}>
@@ -70,8 +70,8 @@ const Diagram = ({data})=>{
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={2}>
-                                        <CContainer>
-                                                <p></p>
+                                        <CContainer className="line-label4" style={{position:"absolute", bottom:"0"}}>
+                                                <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</p>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={2}>
@@ -91,8 +91,8 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={2}>
-                                                <CContainer className="line-label3">
-                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[2].value} KWh</p>
+                                                <CContainer>
+                                                        <p></p>
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={4}>
@@ -101,8 +101,8 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={2}>
-                                                <CContainer className="line-label4">
-                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</p>
+                                                <CContainer>
+                                                        <p></p>
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={2}>
