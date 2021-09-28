@@ -9,6 +9,7 @@ import {
   CNav,
   CBadge,
   CContainer,
+  CButton,
   CRow
 } from '@coreui/react'
 import Charts from '../charts/Charts'
@@ -48,14 +49,15 @@ const Dashboard = () => {
           </CNavItem>
 
           <CNavItem>
-            <button type="button" className="btn btn-success">
+            {/* <button type="button" className="btn btn-success">
               <CRow>
               <i className="material-icons md-18 plus_icon" >add</i>
                 <CContainer>
                   New Device
                 </CContainer>
               </CRow>
-            </button>
+            </button> */}
+            <CButton color="success">New Device</CButton>
           </CNavItem>
 
           <CNavItem className="ml-auto pt-2">
