@@ -16,6 +16,8 @@ const Diagram = ({data})=>{
                 onResize={useXarrow()}>
                      <CContainer>
                              <CRow className="justify-content-center">
+                                        <CCol xs={1}>
+                                        </CCol>
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                         <CContainer className="nodeIcon" id="Generation">
@@ -29,7 +31,7 @@ const Diagram = ({data})=>{
                                                         <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[0].value} KWh</p>
                                                 </CContainer>
                                         </CCol> 
-                                        <CCol xs={4}>
+                                        <CCol xs={2}>
                                                 <CContainer>
                                                         <p></p>
                                                 </CContainer>
@@ -48,11 +50,15 @@ const Diagram = ({data})=>{
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
+                                        <CCol xs={1}>
+                                        </CCol>
 
                                         
                              </CRow>
                              <CRow className="justify-content-center">
 
+                                <CCol xs={1}>
+                                </CCol>
                                 <CCol xs={2}>
                                         <CContainer>
                                                 <p></p>
@@ -63,7 +69,7 @@ const Diagram = ({data})=>{
                                                 <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[2].value} KWh</p>
                                         </CContainer>
                                 </CCol>
-                                <CCol xs={4}>
+                                <CCol xs={2}>
                                         <CContainer className="heightadjust">
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
                                                 <span className="nodeName">StorTower</span>
@@ -78,9 +84,13 @@ const Diagram = ({data})=>{
                                         <CContainer>
                                                 <p></p>
                                         </CContainer>
-                                </CCol> 
+                                </CCol>
+                                <CCol xs={1}>
+                                        </CCol>
                              </CRow>
                              <CRow className="justify-content-center">
+                                        <CCol xs={1}>
+                                        </CCol>
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                 
@@ -95,7 +105,7 @@ const Diagram = ({data})=>{
                                                         <p></p>
                                                 </CContainer>
                                         </CCol>
-                                        <CCol xs={4}>
+                                        <CCol xs={2}>
                                                 <CContainer>
                                                         <p></p>
                                                 </CContainer>
@@ -113,6 +123,8 @@ const Diagram = ({data})=>{
                                                                 <span className="nodeName">Home</span>
                                                         </CContainer>
                                                 </CContainer>
+                                        </CCol>
+                                        <CCol xs={1}>
                                         </CCol>
                              </CRow>
                                 <Xarrow start={data[0].start} startAnchor= {data[0].startAnchor}  end={data[0].end} endAnchor={data[0].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[0].width}/>
