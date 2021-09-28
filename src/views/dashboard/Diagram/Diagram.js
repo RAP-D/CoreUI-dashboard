@@ -14,12 +14,14 @@ const Diagram = ({data})=>{
              <Xwrapper>   
              <ResizeObserver    
                 onResize={useXarrow()}>
-                     <CContainer>
+                     <CContainer style={{paddingTop:"5rem", paddingBottom:"5rem"}}>
                              <CRow className="justify-content-center">
 
                                         <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
                                         </CCol>
-
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                         <CContainer className="nodeIcon" id="Generation">
@@ -32,6 +34,11 @@ const Diagram = ({data})=>{
                                         <CCol xs={2}>
                                         </CCol>
 
+                                        <CCol xs={2}>
+                                                {/* <CContainer className="line-label1" style={{position:"absolute", bottom:"0"}}> 
+                                                        <p style={{color: "#64B42C",fontSize:20}}>{data[0].value} KWh</p>
+                                                </CContainer> */}
+                                        </CCol> 
                                         <CCol xs={2}>
                                                 <CContainer>
                                                         <p></p>
@@ -47,6 +54,11 @@ const Diagram = ({data})=>{
                                                                 <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
                                                                 <span className="nodeName">Grid | Overload</span>
                                                         </CContainer>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
                                                 </CContainer>
                                         </CCol>
 
@@ -93,8 +105,10 @@ const Diagram = ({data})=>{
                              <CRow className="justify-content-center">
 
                                         <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
                                         </CCol>
-
                                         <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
                                                 
@@ -128,10 +142,11 @@ const Diagram = ({data})=>{
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
-
                                         <CCol xs={1}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
                                         </CCol>
-
                              </CRow>
                                 <Xarrow start={data[0].start} startAnchor= {data[0].startAnchor}  end={data[0].end} endAnchor={data[0].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[0].width}/>
                                 <Xarrow start={data[1].start} startAnchor= {data[1].startAnchor} end={data[1].end} endAnchor={data[1].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[1].width}/>
