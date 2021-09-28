@@ -16,49 +16,98 @@ const Diagram = ({data})=>{
                 onResize={useXarrow()}>
                      <CContainer>
                              <CRow className="justify-content-center">
-                                        <CCol xs={6}>
+                                        <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
-                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[0].value} KWh</p>
                                                         <CContainer className="nodeIcon" id="Generation">
                                                                 <img className="icon resize" src={SolarPanel} alt="Generation"/><br/>
                                                                 <span className="nodeName">Generation</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
-                                        <CCol xs={6}>
-                                                <CContainer className="float-right heightadjust">
+                                        <CCol xs={2}>
+                                                <CContainer className="line-label1"> 
+                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[0].value} KWh</p>
+                                                </CContainer>
+                                        </CCol> 
+                                        <CCol xs={4}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={2}>
+                                                <CContainer className="line-label2">
                                                         <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[1].value} KWh</p>
+                                                </CContainer>
+                                        </CCol>
+
+                                        <CCol xs={2}>
+                                                <CContainer className="float-right heightadjust">
                                                         <CContainer className="nodeIcon" id="Grid">
                                                                 <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
                                                                 <span className="nodeName">Grid</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
+
                                         
                              </CRow>
                              <CRow className="justify-content-center">
-                                <CContainer className="heightadjust">
-                                        <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
-                                        <span className="nodeName">StorTower</span>
-                                </CContainer> 
+
+                                <CCol xs={2}>
+                                        <CContainer>
+                                                <p></p>
+                                        </CContainer>
+                                </CCol>
+                                <CCol xs={2}>
+                                        <CContainer>
+                                                <p></p>
+                                        </CContainer>
+                                </CCol>
+                                <CCol xs={4}>
+                                        <CContainer className="heightadjust">
+                                                <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
+                                                <span className="nodeName">StorTower</span>
+                                        </CContainer>
+                                </CCol>
+                                <CCol xs={2}>
+                                        <CContainer>
+                                                <p></p>
+                                        </CContainer>
+                                </CCol>
+                                <CCol xs={2}>
+                                        <CContainer>
+                                                <p></p>
+                                        </CContainer>
+                                </CCol> 
                              </CRow>
                              <CRow className="justify-content-center">
-                                        <CCol xs={6}>
+                                        <CCol xs={2}>
                                                 <CContainer className="float-left heightadjust">
-                                                <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[2].value} KWh</p>
+                                                
                                                         <CContainer className="nodeIcon" id="Battery">
                                                                 <img className="icon resize" src={Battery} alt="Battery"/><br/>
                                                                 <span className="nodeName">Battery</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
-                                        <CCol xs={6}>
+                                        <CCol xs={2}>
+                                                <CContainer className="line-label3">
+                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[2].value} KWh</p>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={4}>
+                                                <CContainer>
+                                                        <p></p>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={2}>
+                                                <CContainer className="line-label4">
+                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</p>
+                                                </CContainer>
+                                        </CCol>
+                                        <CCol xs={2}>
                                                 <CContainer className="float-right heightadjust">
-                                                        <CRow>
-                                                                <CCol lg={6}>
-                                                                        <p style={{color: "#64B42C",fontSize:27,fontWeight:"bold"}}>{data[3].value} KWh</p>
-                                                                </CCol>
-                                                        </CRow>                                                
+                                                                                                      
                                                         <CContainer className="nodeIcon" id="Home">
                                                                 <img className="icon resize" src={Home} alt="Home"/><br/>
                                                                 <span className="nodeName">Home</span>
