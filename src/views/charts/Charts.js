@@ -6,12 +6,7 @@ import {
   CCardHeader
 } from '@coreui/react'
 import {
-  CChartBar,
   CChartLine,
-  CChartDoughnut,
-  CChartRadar,
-  CChartPie,
-  CChartPolarArea
 } from '@coreui/react-chartjs'
 import { DocsLink } from 'src/reusable'
 
@@ -21,71 +16,48 @@ const Charts = () => {
     <CCardGroup columns className = "cols-2" >
       <CCard>
         <CCardHeader>
-          Bar Chart
-          <DocsLink href="http://www.chartjs.org"/>
-        </CCardHeader>
-        <CCardBody>
-          <CChartBar
-            datasets={[
-              {
-                label: 'GitHub Commits',
-                backgroundColor: '#f87979',
-                data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-              }
-            ]}
-            labels="months"
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
-
-      <CCard>
-        <CCardHeader>
-          Doughnut Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartDoughnut
-            datasets={[
-              {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
-                data: [40, 20, 80, 10]
-              }
-            ]}
-            labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
-
-      <CCard>
-        <CCardHeader>
-          Line Chart
+          Consumption predictions vs actual
         </CCardHeader>
         <CCardBody>
           <CChartLine
             datasets={[
               {
-                label: 'Data One',
+                label: 'Actual',
                 backgroundColor: 'rgb(228,102,81,0.9)',
-                data: [30, 39, 10, 50, 30, 70, 35]
+                data: [10.978775, 8.549949999999999, 11.651725, 11.063525, 10.30405]
               },
               {
-                label: 'Data Two',
+                label: 'predicted',
                 backgroundColor: 'rgb(0,216,255,0.9)',
-                data: [39, 80, 40, 35, 40, 20, 45]
+                data: [12.45463, 9.2134634, 9.73245, 9.435461, 11.337]
+              }
+            ]}
+            options={{
+              tooltips: {
+                enabled: true
+              }
+            }}
+            labels="months"
+            
+          />
+        </CCardBody>
+      </CCard>
+      <CCard>
+        <CCardHeader>
+          PV predictions vs actual
+        </CCardHeader>
+        <CCardBody>
+          <CChartLine
+            datasets={[
+              {
+                label: 'Actual',
+                backgroundColor: 'rgb(228,102,81,0.9)',
+                data: [31.552550000000007, 7.3172, 6.101234435, 26.74808421053431, 25.125850034753]
+              },
+              {
+                label: 'predicted',
+                backgroundColor: 'rgb(0,216,255,0.9)',
+                data: [24.09043263428642, 4.177478065197698, 8.35541751096211, 17.005611065997734, 21.863025672361708]
               }
             ]}
             options={{
@@ -98,116 +70,7 @@ const Charts = () => {
         </CCardBody>
       </CCard>
 
-      <CCard>
-        <CCardHeader>
-          Pie Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartPie
-            datasets={[
-              {
-                backgroundColor: [
-                  '#41B883',
-                  '#E46651',
-                  '#00D8FF',
-                  '#DD1B16'
-                ],
-                data: [40, 20, 80, 10]
-              }
-            ]}
-            labels={['VueJs', 'EmberJs', 'ReactJs', 'AngularJs']}
-            options={{
-              tooltips: {
-                enabled: true
-              }
-            }}
-          />
-        </CCardBody>
-      </CCard>
-
-      <CCard>
-        <CCardHeader>
-          Polar Area Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartPolarArea
-            datasets={[
-              {
-                label: 'My First dataset',
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: 'rgba(179,181,198,1)',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
-                data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                label: 'My Second dataset',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: 'rgba(255,99,132,1)',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
-              }
-            ]}
-            options={{
-              aspectRatio: 1.5,
-              tooltips: {
-                enabled: true
-              }
-            }}
-            labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
-            ]}
-          />
-        </CCardBody>
-      </CCard>
-
-      <CCard>
-        <CCardHeader>
-          Radar Chart
-        </CCardHeader>
-        <CCardBody>
-          <CChartRadar
-            datasets={[
-              {
-                label: '2019',
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                borderColor: 'rgba(179,181,198,1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
-                tooltipLabelColor: 'rgba(179,181,198,1)',
-                data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                label: '2020',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
-                pointBackgroundColor: 'rgba(255,99,132,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
-                tooltipLabelColor: 'rgba(255,99,132,1)',
-                data: [28, 48, 40, 19, 96, 27, 100]
-              }
-            ]}
-            options={{
-              aspectRatio: 1.5,
-              tooltips: {
-                enabled: true
-              }
-            }}
-            labels={[
-              'Eating', 'Drinking', 'Sleeping', 'Designing',
-              'Coding', 'Cycling', 'Running'
-            ]}
-          />
-        </CCardBody>
-      </CCard>
+     
     </CCardGroup>
   )
 }
