@@ -50,7 +50,8 @@ const Diagram = ({data})=>{
                                                 <CContainer className="float-right heightadjust">
                                                         <CContainer className="nodeIcon" id="Grid">
                                                                 <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
-                                                                <span className="nodeName">Grid | Overload</span>
+                                                                <span className="nodeName" style={{position:"absolute", top:"4rem", left:"2.5rem"}}>Grid |</span>
+                                                                <span className="nodeName" style={{position:"absolute", top:"5rem", left:"1.7rem"}}>Overload</span>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
