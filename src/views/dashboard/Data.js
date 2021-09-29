@@ -2,8 +2,7 @@ import {
     CCol,
     CRow,
     CWidgetSimple,
-    CContainer, 
-    CButton,
+    CContainer,  
   } from '@coreui/react'
 
 import CIcon from '@coreui/icons-react'
@@ -209,15 +208,14 @@ const Data = () => {
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">
                         <CContainer className="float-right p-0">
-                            {/* <button type="button" className="btn btn-dark">
+                            <button type="button" className="btn btn-dark">
                             <CRow>
                             <i className="material-icons md-18 plus_icon" >cloud_download</i>
                                 <CContainer>
                                 Download
                                 </CContainer>
                             </CRow>
-                            </button> */}
-                            <CButton color="success">Download</CButton>
+                            </button>
                         </CContainer>
                     </CCol>
                         
