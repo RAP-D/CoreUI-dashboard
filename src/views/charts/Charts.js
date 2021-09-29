@@ -5,15 +5,18 @@ import {
   CCardGroup,
   CCardHeader,
   CCol,
-  CContainer,
+  //CContainer,
   CRow,
 } from '@coreui/react'
 import {
   CChartLine,
 } from '@coreui/react-chartjs'
-import { DocsLink } from 'src/reusable'
+//import { DocsLink } from 'src/reusable'
 
 const Charts = () => {
+
+  let tommorow =new Date();
+  tommorow.setDate(tommorow.getDate()+1)
 
   return ( 
     <CCardGroup columns className = "cols-2" >
@@ -25,7 +28,7 @@ const Charts = () => {
           <CCol xs={6}>
             <CCard>
               <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Tommorows Predicted</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{String(tommorow.getDate()).padStart(2, '0')+'/'+String(tommorow.getMonth() + 1).padStart(2, '0')+'/'+tommorow.getFullYear()} Predicted</p>
                 <p style={{fontSize:14, textAlign:"center"}}>Generation (KWH)</p>
               </CCardBody>
             </CCard>
@@ -33,7 +36,7 @@ const Charts = () => {
           <CCol xs={6}>
             <CCard>
               <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Tommorows Predicted</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{String(tommorow.getDate()).padStart(2, '0')+'/'+String(tommorow.getMonth() + 1).padStart(2, '0')+'/'+tommorow.getFullYear()} Predicted</p>
                 <p style={{fontSize:14, textAlign:"center"}}>Consumption (KWH)</p>
               </CCardBody>
             </CCard>
