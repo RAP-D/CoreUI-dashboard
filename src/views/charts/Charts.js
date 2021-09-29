@@ -5,14 +5,11 @@ import {
   CCardGroup,
   CCardHeader,
   CCol,
-  CChart,
-  //CContainer,
   CRow,
 } from '@coreui/react'
 import {
   CChartLine,
 } from '@coreui/react-chartjs'
-//import { DocsLink } from 'src/reusable'
 
 const Charts = () => {
 
@@ -23,7 +20,7 @@ const Charts = () => {
     <CCardGroup columns className = "cols-2" >
 
     <CCard>
-      <CCardHeader style={{fontWeight:"bold"}}>All Prediction</CCardHeader>
+      <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>All Prediction</CCardHeader>
       <CCardBody>
         <CRow>
           <CCol xs={6}>
@@ -48,8 +45,8 @@ const Charts = () => {
     
 
       <CCard>
-        <CCardHeader>
-          Consumption predictions vs actual
+        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
+          Consumption Predictions vs Actual
         </CCardHeader>
         <CCardBody>
           <CChartLine
@@ -79,7 +76,7 @@ const Charts = () => {
       </CCard>
 
       <CCard>
-        <CCardHeader style={{fontWeight:"bold"}}>Calcutaion</CCardHeader>
+        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>Calcutaion</CCardHeader>
         <CCardBody>
           <CRow>
             <CCol xs={6}>
@@ -103,8 +100,8 @@ const Charts = () => {
       </CCard>
 
       <CCard>
-        <CCardHeader>
-          PV predictions vs actual
+        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
+          PV Predictions vs Actual
         </CCardHeader>
         <CCardBody>
           <CChartLine
