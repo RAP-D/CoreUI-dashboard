@@ -5,6 +5,7 @@ import {
   CCardGroup,
   CCardHeader,
   CCol,
+  CChart,
   //CContainer,
   CRow,
 } from '@coreui/react'
@@ -55,12 +56,14 @@ const Charts = () => {
             datasets={[
               {
                 label: 'Actual',
-                backgroundColor: 'rgb(99,178,46)',
+                borderColor: 'rgb(99,178,46)',
+                backgroundColor: "rgb(0,0,0,0)",
                 data: [10.978775, 8.549949999999999, 11.651725, 11.063525, 10.30405]
               },
               {
                 label: 'predicted',
-                backgroundColor: 'rgb(70,84,108)',
+                borderColor: 'rgb(70,84,108)',
+                backgroundColor: "rgb(0,0,0,0)",
                 data: [12.45463, 9.2134634, 9.73245, 9.435461, 11.337]
               }
             ]}
@@ -108,12 +111,14 @@ const Charts = () => {
             datasets={[
               {
                 label: 'Actual',
-                backgroundColor: 'rgb(99,178,46)',
+                borderColor: 'rgb(99,178,46)',
+                backgroundColor: "rgb(0,0,0,0)",
                 data: [31.552550000000007, 7.3172, 6.101234435, 26.74808421053431, 25.125850034753]
               },
               {
                 label: 'predicted',
-                backgroundColor: 'rgb(70,84,108)',
+                borderColor: 'rgb(70,84,108)',
+                backgroundColor: "rgb(0,0,0,0)",
                 data: [24.09043263428642, 4.177478065197698, 8.35541751096211, 17.005611065997734, 21.863025672361708]
               }
             ]}
