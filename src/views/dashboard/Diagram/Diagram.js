@@ -10,7 +10,7 @@ import ChargingText from './ChargingText.svg'
 import ResizeObserver from 'rc-resize-observer';
 import { CContainer, CRow, CCol } from "@coreui/react";
 
-const Diagram = ({data})=>{
+const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLine})=>{
         return(
              <Xwrapper>   
              <ResizeObserver    
@@ -88,10 +88,10 @@ const Diagram = ({data})=>{
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                <Xarrow start={"Generation"} startAnchor= {"bottom"}  end={"StorTower"} endAnchor={["right", {position: "left", offset: {y: -20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
-                                <Xarrow start={"Grid"} startAnchor= {"bottom"} end={"StorTower"} endAnchor={["left", {position: "right", offset: {y: -20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
-                                <Xarrow start={"DsrLoads"} startAnchor= {"top"} end={"StorTower"} endAnchor={["right", {position: "left", offset: {y: 20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
-                                <Xarrow start={"CriticalLoads"} startAnchor= {"top"} end={"StorTower"} endAnchor={["left", {position: "right", offset: {y: 20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
+                                <Xarrow start={generationLine.start} startAnchor= {generationLine.startAnchor}  end={generationLine.end} endAnchor={generationLine.endAnchor} strokeWidth={generationLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
+                                <Xarrow start={gridHomeLine.start} startAnchor= {gridHomeLine.startAnchor}  end={gridHomeLine.end} endAnchor={gridHomeLine.endAnchor} strokeWidth={gridHomeLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
+                                <Xarrow start={dsrLoadsLine.start} startAnchor= {dsrLoadsLine.startAnchor}  end={dsrLoadsLine.end} endAnchor={dsrLoadsLine.endAnchor} strokeWidth={dsrLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true}/>
+                                <Xarrow start={criticalLoadsLine.start} startAnchor= {criticalLoadsLine.startAnchor}  end={criticalLoadsLine.end} endAnchor={criticalLoadsLine.endAnchor} strokeWidth={criticalLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>

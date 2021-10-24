@@ -20,7 +20,7 @@ const Charts = () => {
     <CCardGroup columns className = "cols-2" >
 
     <CCard>
-      <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>All Prediction</CCardHeader>
+      <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>AI Prediction</CCardHeader>
       <CCardBody>
         <CRow>
           <CCol xs={6}>
@@ -82,7 +82,7 @@ const Charts = () => {
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Change Window (HH:MM-HH:MM)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Change Window</p>
                 <p style={{fontSize:14, textAlign:"center"}}>12:30-23:45</p>
                 </CCardBody>
               </CCard>

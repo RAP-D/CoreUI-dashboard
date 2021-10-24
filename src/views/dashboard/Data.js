@@ -5,20 +5,17 @@ import {
     CContainer,
     CCard,
     CCardBody,
-  CCardGroup,
   CCardHeader,  
   CListGroup,
   CListGroupItem,
   } from '@coreui/react'
-
-import CIcon from '@coreui/icons-react'
 import Diagram from './Diagram/Diagram'
 import './Data.css'
 import { useEffect,useState } from 'react';
 import { CSVLink } from 'react-csv';
 
 const Data = () => {
-    const initialState={
+    const initialDataState={
         dat:[
             {title:'',unit:'',val:''},
             {title:'',unit:'',val:''},
@@ -72,9 +69,12 @@ const Data = () => {
             {title:'',unit:'',val:''},
         ]
     }
-    const [data, setData] = useState(initialState);
+    const [data, setData] = useState(initialDataState);
+    const [generationLine, setGenerationLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
+    const [gridHomeLine, setGridHomeLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
+    const [dsrLoadsLine, setDsrLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
+    const [criticalLoadsLine, setCriticalLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const MINUTE_MS =180000;
-    
     const getData = () => {
         fetch('https://traicon.stortera.com/api/token/refresh',{
             method: "post",
@@ -92,91 +92,35 @@ const Data = () => {
             })
             .then(response=>response.json())
             .then(data=>{
-                console.log(data)
                 setData(data)
+                if(parseFloat(data.dat[40].val)+parseFloat(data.dat[41].val)===0){//for generation to stortera line
+                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:0})
+                }else{
+                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4})
+                }
+
+                if(parseFloat(data.dat[27].val)>0){//for gridHome to stortera line
+                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4})   
+                }else if(parseFloat(data.dat[27].val)===0){
+                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:0})
+                }else{
+                    setGridHomeLine({start:"StorTower",end:"Grid",startAnchor:["left", {position: "right", offset: {y: -20}}],endAnchor:"bottom",width:4})
+                }
+                //for dsrLoads to stortera line
+                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:4})
+                //for criticalLoads to stortera line
+                if(parseFloat(data.dat[31].val)===0){
+                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0})
+                }else{
+                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4})
+                }
+
             }).catch(err=>{
                 console.log(err)
             })
         }).catch(err=>{
             console.log(err)
         }) 
-
-    //     .then(data=>{
-    //         console.log(data);
-    //         data.diagram.forEach((element,i) => {
-    //             if(element.direction==='no'){
-    //                 data.diagram[i].width=0;
-    //                 data.diagram[i].start="StorTower";
-    //                 data.diagram[i].end=element.name;
-    //                 switch(i){
-    //                     case 0:
-    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-    //                         data.diagram[i].endAnchor ="bottom";
-    //                         break;
-    //                     case 1:
-    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-    //                         data.diagram[i].endAnchor ="bottom";
-    //                         break;
-    //                     case 2:
-    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-    //                         data.diagram[i].endAnchor ="top";
-    //                         break;
-    //                     default:
-    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-    //                         data.diagram[i].endAnchor ="top";
-    //                         break;
-    //                 }
-    //             }else if(element.direction==='in'){
-    //                 data.diagram[i].width=4;
-    //                 data.diagram[i].start=element.name;
-    //                 data.diagram[i].end="StorTower"
-    //                 switch(i){
-    //                     case 0:
-    //                         data.diagram[i].startAnchor ="bottom";
-    //                         data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
-    //                         break;
-    //                     case 1:
-    //                         data.diagram[i].startAnchor ="bottom";
-    //                         data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
-    //                         break;
-    //                     case 2:
-    //                         data.diagram[i].startAnchor ="top";
-    //                         data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
-    //                         break;
-    //                     default:
-    //                         data.diagram[i].startAnchor ="top";
-    //                         data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
-    //                         break;
-    //                 }
-    //             }else{
-    //                 data.diagram[i].width=4;
-    //                 data.diagram[i].start="StorTower";
-    //                 data.diagram[i].end=element.name;
-    //                 switch(i){
-    //                     case 0:
-    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-    //                         data.diagram[i].endAnchor ="bottom";
-    //                         break;
-    //                     case 1:
-    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-    //                         data.diagram[i].endAnchor ="bottom";
-    //                         break;
-    //                     case 2:
-    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-    //                         data.diagram[i].endAnchor ="top";
-    //                         break;
-    //                     default:
-    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-    //                         data.diagram[i].endAnchor ="top";
-    //                         break;
-    //                 }
-    //             }
-    //         })
-    //         setData(data)  
-    //     })
-    //     .catch(function(err) {
-    //         console.log(err)
-    //     });
      }
     useEffect(() => {
         getData();
@@ -189,42 +133,6 @@ const Data = () => {
         <>
             <CRow className="pt-10">
                 <CCol xs="12" sm="6" lg="5">
-                    {/* <CContainer className="cardContainer">
-                    <CRow>
-                        <CContainer fluid className="align-self-center">
-                            <strong style={{fontSize: 'medium'}}>Statistical data</strong>
-                            <CIcon className="float-right" size={'lg'} name={'cilSettings'} />
-                        </CContainer>
-                    </CRow>
-
-                    <CRow>
-                        <CContainer fluid>
-                            <CWidgetSimple header={data.cards[0].name} text={data.cards[0].value.toString()+" KWh"}>
-                            </CWidgetSimple>
-                        </CContainer>
-                    </CRow>
-
-                    <CRow>
-                        <CContainer fluid>
-                            <CWidgetSimple header={data.cards[1].name} text={data.cards[1].value.toString()+" KWh"}>
-                            </CWidgetSimple>
-                        </CContainer>
-                    </CRow>
-
-                    <CRow>
-                        <CContainer fluid>
-                            <CWidgetSimple header={data.cards[2].name} text={data.cards[2].value.toString()+" V"}>
-                            </CWidgetSimple>
-                        </CContainer>
-                    </CRow>
-
-                    <CRow>
-                        <CContainer fluid>
-                            <CWidgetSimple header={data.cards[3].name} text={data.cards[3].value.toString()+" V"}>
-                            </CWidgetSimple>
-                        </CContainer>
-                    </CRow>
-                    </CContainer> */}
                     <CCard>
                         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>PV & Battery</CCardHeader>
                         <CCardBody style={{padding:5}}>
@@ -330,7 +238,7 @@ const Data = () => {
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="">
-                            <Diagram data={data}/>
+                            <Diagram data={data} generationLine={generationLine} gridHomeLine={gridHomeLine} dsrLoadsLine={dsrLoadsLine} criticalLoadsLine={criticalLoadsLine}/>
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>
