@@ -358,7 +358,7 @@ const Data = () => {
                             <CRow>
                             <i className="material-icons md-18 plus_icon" >cloud_download</i>
                                 <CContainer>
-                                <CSVLink data={data.dat} target="_blank">Download</CSVLink>
+                                <CSVLink data={data.dat} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>Download</CSVLink>
                                 </CContainer>
                             </CRow>
                             </button>
