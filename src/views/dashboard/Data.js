@@ -354,14 +354,12 @@ const Data = () => {
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">
                         <CContainer className="float-right p-0">
-                            <button type="button" className="btn btn-dark" >
+                        <CSVLink data={data.dat} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>
                             <CRow>
                             <i className="material-icons md-18 plus_icon" >cloud_download</i>
-                                <CContainer>
-                                <CSVLink data={data.dat} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>Download</CSVLink>
-                                </CContainer>
+                                <CContainer>Download</CContainer>
                             </CRow>
-                            </button>
+                        </CSVLink>
                         </CContainer>
                     </CCol>
                         
