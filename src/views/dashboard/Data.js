@@ -64,89 +64,106 @@ const Data = () => {
         ]
     }
     const [data, setData] = useState(initialState);
-    const MINUTE_MS =3000;
+    const MINUTE_MS =180000;
     
     const getData = () => {
-        fetch('https://dashboard-backend-rapid.herokuapp.com/', {
-            method: 'get'
+        fetch('https://traicon.stortera.com/api/token/refresh',{
+            method: "post",
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+                username: "powerforward",
+                password: "VoMlJevkd3e3NUcx2ntMZA"
+            })
         })
         .then(response=>response.json())
         .then(data=>{
-            data.diagram.forEach((element,i) => {
-                if(element.direction==='no'){
-                    data.diagram[i].width=0;
-                    data.diagram[i].start="StorTower";
-                    data.diagram[i].end=element.name;
-                    switch(i){
-                        case 0:
-                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-                            data.diagram[i].endAnchor ="bottom";
-                            break;
-                        case 1:
-                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-                            data.diagram[i].endAnchor ="bottom";
-                            break;
-                        case 2:
-                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-                            data.diagram[i].endAnchor ="top";
-                            break;
-                        default:
-                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-                            data.diagram[i].endAnchor ="top";
-                            break;
-                    }
-                }else if(element.direction==='in'){
-                    data.diagram[i].width=4;
-                    data.diagram[i].start=element.name;
-                    data.diagram[i].end="StorTower"
-                    switch(i){
-                        case 0:
-                            data.diagram[i].startAnchor ="bottom";
-                            data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
-                            break;
-                        case 1:
-                            data.diagram[i].startAnchor ="bottom";
-                            data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
-                            break;
-                        case 2:
-                            data.diagram[i].startAnchor ="top";
-                            data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
-                            break;
-                        default:
-                            data.diagram[i].startAnchor ="top";
-                            data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
-                            break;
-                    }
-                }else{
-                    data.diagram[i].width=4;
-                    data.diagram[i].start="StorTower";
-                    data.diagram[i].end=element.name;
-                    switch(i){
-                        case 0:
-                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
-                            data.diagram[i].endAnchor ="bottom";
-                            break;
-                        case 1:
-                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
-                            data.diagram[i].endAnchor ="bottom";
-                            break;
-                        case 2:
-                            data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
-                            data.diagram[i].endAnchor ="top";
-                            break;
-                        default:
-                            data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
-                            data.diagram[i].endAnchor ="top";
-                            break;
-                    }
-                }
+            fetch('https://traicon.stortera.com/api/inverter/operate/B3E19380158221/1/data-last',{
+                method: "get",
+                headers: {'Authorization': `Bearer ${data.access_token}`}
             })
-            setData(data)  
-        })
-        .catch(function(err) {
-            console.log(err)
-        });
-    }
+            .then(response=>response.json())
+            .then(data=>{
+                    console.log(data);
+            })
+        }) 
+
+    //     .then(data=>{
+    //         console.log(data);
+    //         data.diagram.forEach((element,i) => {
+    //             if(element.direction==='no'){
+    //                 data.diagram[i].width=0;
+    //                 data.diagram[i].start="StorTower";
+    //                 data.diagram[i].end=element.name;
+    //                 switch(i){
+    //                     case 0:
+    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+    //                         data.diagram[i].endAnchor ="bottom";
+    //                         break;
+    //                     case 1:
+    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+    //                         data.diagram[i].endAnchor ="bottom";
+    //                         break;
+    //                     case 2:
+    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+    //                         data.diagram[i].endAnchor ="top";
+    //                         break;
+    //                     default:
+    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+    //                         data.diagram[i].endAnchor ="top";
+    //                         break;
+    //                 }
+    //             }else if(element.direction==='in'){
+    //                 data.diagram[i].width=4;
+    //                 data.diagram[i].start=element.name;
+    //                 data.diagram[i].end="StorTower"
+    //                 switch(i){
+    //                     case 0:
+    //                         data.diagram[i].startAnchor ="bottom";
+    //                         data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: -20}}];
+    //                         break;
+    //                     case 1:
+    //                         data.diagram[i].startAnchor ="bottom";
+    //                         data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: -20}}]
+    //                         break;
+    //                     case 2:
+    //                         data.diagram[i].startAnchor ="top";
+    //                         data.diagram[i].endAnchor = ["right", {position: "left", offset: {y: 20}}]
+    //                         break;
+    //                     default:
+    //                         data.diagram[i].startAnchor ="top";
+    //                         data.diagram[i].endAnchor = ["left", {position: "right", offset: {y: 20}}]
+    //                         break;
+    //                 }
+    //             }else{
+    //                 data.diagram[i].width=4;
+    //                 data.diagram[i].start="StorTower";
+    //                 data.diagram[i].end=element.name;
+    //                 switch(i){
+    //                     case 0:
+    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: -20}}];
+    //                         data.diagram[i].endAnchor ="bottom";
+    //                         break;
+    //                     case 1:
+    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: -20}}];
+    //                         data.diagram[i].endAnchor ="bottom";
+    //                         break;
+    //                     case 2:
+    //                         data.diagram[i].startAnchor = ["right", {position: "left", offset: {y: 20}}];
+    //                         data.diagram[i].endAnchor ="top";
+    //                         break;
+    //                     default:
+    //                         data.diagram[i].startAnchor = ["left", {position: "right", offset: {y: 20}}];
+    //                         data.diagram[i].endAnchor ="top";
+    //                         break;
+    //                 }
+    //             }
+    //         })
+    //         setData(data)  
+    //     })
+    //     .catch(function(err) {
+    //         console.log(err)
+    //     });
+     }
     useEffect(() => {
         getData();
         const interval = setInterval(() => {
