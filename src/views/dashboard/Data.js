@@ -15,7 +15,7 @@ import CIcon from '@coreui/icons-react'
 import Diagram from './Diagram/Diagram'
 import './Data.css'
 import { useEffect,useState } from 'react';
-import { CSVDownload, CSVLink } from 'react-csv';
+import { CSVLink } from 'react-csv';
 
 const Data = () => {
     const initialState={
@@ -92,7 +92,10 @@ const Data = () => {
             })
             .then(response=>response.json())
             .then(data=>{
+                console.log(data)
                 setData(data)
+            }).catch(err=>{
+                console.log(err)
             })
         }).catch(err=>{
             console.log(err)
@@ -253,7 +256,7 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Power</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[40].val+" "+data.dat[40].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{(parseInt(data.dat[40].val)+parseInt(data.dat[41].val))+" "+data.dat[40].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -297,25 +300,25 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[30].val+" "+data.dat[30].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Frequency</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[31].val+" "+data.dat[31].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Current</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[32].val+" "+data.dat[32].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Load Percentage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[33].val+" "+data.dat[33].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -327,11 +330,11 @@ const Data = () => {
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="">
-                            {/*<Diagram data={data.diagram}/>*/}
+                            <Diagram data={data}/>
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>
-                    <CCard>
+                    {/*<CCard>
                         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>LOADS</CCardHeader>
                         <CCardBody style={{padding:5}}>
                             <CListGroup>
@@ -349,7 +352,7 @@ const Data = () => {
                                 </CListGroupItem>
                             </CListGroup>
                         </CCardBody>
-                    </CCard>
+                    </CCard>*/}
                     <CRow>
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">

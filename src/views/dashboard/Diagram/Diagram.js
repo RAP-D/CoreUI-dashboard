@@ -1,11 +1,12 @@
 import React  from "react";
 import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
 import './Diagram.css';
-import SolarPanel from './solar-panel.svg';
-import PowerTower from './power-tower.svg';
-import Stortera from './stortera.svg';
-import Battery from './battery-status.svg';
-import Home from './lightbulb.svg';
+import Generation from './Generation.svg';
+import GridHome from './GridHome.svg';
+import Stortera from './Stortera.svg';
+import DsrLoads from './DsrLoads.svg';
+import CriticalLoads from './CriticalLoads.svg';
+import ChargingText from './ChargingText.svg'
 import ResizeObserver from 'rc-resize-observer';
 import { CContainer, CRow, CCol } from "@coreui/react";
 
@@ -20,10 +21,9 @@ const Diagram = ({data})=>{
                                         
                                         <CCol xs={4}>
                                                 <CContainer className="float-left heightadjust">
-                                                        <span className="nodeName">Charging</span><br/>
+                                                        <span className="nodeName">{parseInt(data.dat[40].val)+parseInt(data.dat[41].val)+" "+data.dat[40].unit}</span><br/>
                                                         <CContainer className="nodeIcon" id="Generation">
-                                                                <img className="icon resize" src={SolarPanel} alt="Generation"/><br/>
-                                                                <span className="nodeName" style={{fontSize:14}}>Generation</span>
+                                                                <img className="icon resize" src={Generation} alt="Generation"/><br/> 
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
@@ -34,10 +34,9 @@ const Diagram = ({data})=>{
                                         </CCol>
                                         <CCol xs={4}>
                                                 <CContainer className="float-right heightadjust">
-                                                        <span className="nodeName">Charging</span><br/>
+                                                        <span className="nodeName">{data.dat[27].val+" "+data.dat[27].unit}</span><br/>
                                                         <CContainer className="nodeIcon" id="Grid">
-                                                                <img className="icon resize" src={PowerTower} alt="Grid"/><br/>
-                                                                <span className="nodeName" style={{fontSize:14}}>Grid/Home</span>
+                                                                <img className="icon resize" src={GridHome} alt="Grid Home"/><br/>
                                                         </CContainer>
                                                 </CContainer>
                                         </CCol>
@@ -54,7 +53,7 @@ const Diagram = ({data})=>{
                                 <CCol xs={4}>
                                         <CContainer className="heightadjust">
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
-                                                <span className="nodeName">Charging</span>
+                                                <img className="icon tower" src={ChargingText} alt="Charging"/>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={4}>
@@ -68,11 +67,10 @@ const Diagram = ({data})=>{
 
                                         <CCol xs={4}>
                                                 <CContainer className="float-left heightadjust">
-                                                        <CContainer className="nodeIcon" id="Battery">
-                                                                <img className="icon resize" src={Battery} alt="Battery"/><br/>
-                                                                <span className="nodeName" style={{fontSize:14}}>DSR Loads</span>
+                                                        <CContainer className="nodeIcon" id="DsrLoads">
+                                                                <img className="icon resize" src={DsrLoads} alt="Dsr Loads"/><br/>
                                                         </CContainer>
-                                                        <span className="nodeName">Charging</span><br/>
+                                                        <span className="nodeName">0 W</span><br/>
                                                 </CContainer>
                                         </CCol>
                                         
@@ -83,18 +81,17 @@ const Diagram = ({data})=>{
                                         </CCol>
                                         <CCol xs={4}>
                                                 <CContainer className="float-right heightadjust">                                                     
-                                                        <CContainer className="nodeIcon" id="Home">
-                                                                <img className="icon resize" src={Home} alt="Home"/><br/>
-                                                                <span className="nodeName" style={{fontSize:14}}>Critical Loads</span>
+                                                        <CContainer className="nodeIcon" id="CriticalLoads">
+                                                                <img className="icon resize" src={CriticalLoads} alt="Critical Loads"/><br/>
                                                         </CContainer>
-                                                        <span className="nodeName">Charging</span><br/>
+                                                        <span className="nodeName">{data.dat[31].val+" "+data.dat[31].unit}</span><br/>
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                <Xarrow start={data[0].start} startAnchor= {data[0].startAnchor}  end={data[0].end} endAnchor={data[0].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[0].width}/>
-                                <Xarrow start={data[1].start} startAnchor= {data[1].startAnchor} end={data[1].end} endAnchor={data[1].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[1].width}/>
-                                <Xarrow start={data[2].start} startAnchor= {data[2].startAnchor} end={data[2].end} endAnchor={data[2].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[2].width}/>
-                                <Xarrow start={data[3].start} startAnchor= {data[3].startAnchor} end={data[3].end} endAnchor={data[3].endAnchor} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} strokeWidth={data[3].width}/>
+                                <Xarrow start={"Generation"} startAnchor= {"bottom"}  end={"StorTower"} endAnchor={["right", {position: "left", offset: {y: -20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
+                                <Xarrow start={"Grid"} startAnchor= {"bottom"} end={"StorTower"} endAnchor={["left", {position: "right", offset: {y: -20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
+                                <Xarrow start={"DsrLoads"} startAnchor= {"top"} end={"StorTower"} endAnchor={["right", {position: "left", offset: {y: 20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false}/>
+                                <Xarrow start={"CriticalLoads"} startAnchor= {"top"} end={"StorTower"} endAnchor={["left", {position: "right", offset: {y: 20}}]} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={false} />
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>
