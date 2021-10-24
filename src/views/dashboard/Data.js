@@ -2,7 +2,13 @@ import {
     CCol,
     CRow,
     CWidgetSimple,
-    CContainer,  
+    CContainer,
+    CCard,
+    CCardBody,
+  CCardGroup,
+  CCardHeader,  
+  CListGroup,
+  CListGroupItem,
   } from '@coreui/react'
 
 import CIcon from '@coreui/icons-react'
@@ -174,8 +180,8 @@ const Data = () => {
     return (
         <>
             <CRow className="pt-10">
-                <CCol xs="12" sm="6" lg="3">
-                    <CContainer className="cardContainer">
+                <CCol xs="12" sm="6" lg="5">
+                    {/* <CContainer className="cardContainer">
                     <CRow>
                         <CContainer fluid className="align-self-center">
                             <strong style={{fontSize: 'medium'}}>Statistical data</strong>
@@ -210,10 +216,109 @@ const Data = () => {
                             </CWidgetSimple>
                         </CContainer>
                     </CRow>
-                    </CContainer>
+                    </CContainer> */}
+                    <CCard>
+                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>PV & Battery</CCardHeader>
+                        <CCardBody style={{padding:5}}>
+                            <CListGroup>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Battery Voltage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Battery Status</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >PV Input Voltage 1</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >PV Input Voltage 2</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >PV Power</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                            </CListGroup>
+                        </CCardBody>
+                    </CCard>
+                    <CCard>
+                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>GRID</CCardHeader>
+                        <CCardBody style={{padding:5}}>
+                            <CListGroup>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Grid Voltage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Grid Power (Import/Export)</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Grid Frequency</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >Grid Current</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                            </CListGroup>
+                        </CCardBody>
+                    </CCard>
+                    <CCard>
+                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>System Output</CCardHeader>
+                        <CCardBody style={{padding:5}}>
+                            <CListGroup>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Voltage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Frequency</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Current</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Load Percentage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                            </CListGroup>
+                        </CCardBody>
+                    </CCard>
                 </CCol>
             
-                <CCol xs="12" sm="6" lg="9">
+                <CCol xs="12" sm="6" lg="7">
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="">
@@ -221,6 +326,37 @@ const Data = () => {
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>
+                    <CCard>
+                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>System Output</CCardHeader>
+                        <CCardBody style={{padding:5}}>
+                            <CListGroup>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Voltage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Frequency</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Current</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Load Percentage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                            </CListGroup>
+                        </CCardBody>
+                    </CCard>
                     <CRow>
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">

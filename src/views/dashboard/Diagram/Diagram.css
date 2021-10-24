@@ -1,12 +1,12 @@
 @import 'bulma/css/bulma.css';
 
 .nodeIcon{
-    background-color: #64B42C;
-    border: 0.2rem solid #28292D;
-    padding: 1.2rem;
-    height: 8rem;
-    width: 8rem;
-    border-radius: 50%;
+    background-color: #EBEDEF;
+    padding: 0.9rem;
+    height: 6rem;
+    width: 7rem;
+    border-radius: 10%;
+    box-shadow: 5px 5px 5px #C9C9C9;
 }
 
 .heightadjust{
@@ -14,8 +14,8 @@
 }
 
 .tower{
-    height: 8rem !important;
-    width: 3rem !important;
+    height: 3rem !important;
+    width: 7rem !important;
 }
 
 .nodename{
