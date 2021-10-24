@@ -15,58 +15,61 @@ import CIcon from '@coreui/icons-react'
 import Diagram from './Diagram/Diagram'
 import './Data.css'
 import { useEffect,useState } from 'react';
+import { CSVDownload, CSVLink } from 'react-csv';
 
 const Data = () => {
     const initialState={
-        cards: [{
-                name:"Output Load",
-                value: 0.00
-            },{
-                name:"Total Energy",
-                value: 0.00
-            },{
-                name:"Battery Voltage",
-                value: 0.00
-            },{
-                name:"BUS Voltage",
-                value: 0.00
-            }
-        ],
-        diagram: [{
-                value: 0.00,
-                start:"",
-                end:"",
-                startAnchor:"",
-                endAnchor:"",
-                style:{},
-                width:0,
-            },{
-                value: 0.00,
-                start:"",
-                end:"",
-                startAnchor:"",
-                endAnchor:"",
-                style:{},
-                width:0,
-            },{
-                name:"Battery",
-                start:"",
-                end:"",
-                startAnchor:"",
-                endAnchor:"",
-                style:{},
-                width:0,
-                value: 0.00
-            },{
-                name:"Home",
-                start:"",
-                end:"",
-                startAnchor:"",
-                endAnchor:"",
-                style:{},
-                width:0,
-                value: 0.00
-            }
+        dat:[
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
+            {title:'',unit:'',val:''},
         ]
     }
     const [data, setData] = useState(initialState);
@@ -89,8 +92,10 @@ const Data = () => {
             })
             .then(response=>response.json())
             .then(data=>{
-                    console.log(data);
+                setData(data)
             })
+        }).catch(err=>{
+            console.log(err)
         }) 
 
     //     .then(data=>{
@@ -224,31 +229,31 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[37].val+" "+data.dat[37].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Status</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[47].val}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Input Voltage 1</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[43].val+" "+data.dat[43].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Input Voltage 2</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[44].val+" "+data.dat[44].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Power</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[40].val+" "+data.dat[40].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -261,25 +266,25 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[26].val+" "+data.dat[26].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Power (Import/Export)</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[27].val+" "+data.dat[27].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Frequency</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[28].val+" "+data.dat[28].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Current</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[29].val+" "+data.dat[29].unit}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -322,35 +327,23 @@ const Data = () => {
                     <CRow>
                     <CContainer fluid>
                         <CWidgetSimple header="">
-                            <Diagram data={data.diagram}/>
+                            {/*<Diagram data={data.diagram}/>*/}
                         </CWidgetSimple> 
                     </CContainer>
                     </CRow>
                     <CCard>
-                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>System Output</CCardHeader>
+                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>LOADS</CCardHeader>
                         <CCardBody style={{padding:5}}>
                             <CListGroup>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >System Output Voltage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" >CRITICAL LOAD POWER</CCol>
                                         <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >System Output Frequency</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
-                                    </CRow>
-                                </CListGroupItem>
-                                <CListGroupItem style={{fontSize:12, padding:5}}>
-                                    <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >System Output Current</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
-                                    </CRow>
-                                </CListGroupItem>
-                                <CListGroupItem style={{fontSize:12, padding:5}}>
-                                    <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >System Output Load Percentage</CCol>
+                                        <CCol xs="6" sm="6" lg="6" >CRITICAL LOAD POWER</CCol>
                                         <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
                                     </CRow>
                                 </CListGroupItem>
@@ -361,11 +354,11 @@ const Data = () => {
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">
                         <CContainer className="float-right p-0">
-                            <button type="button" className="btn btn-dark">
+                            <button type="button" className="btn btn-dark" >
                             <CRow>
                             <i className="material-icons md-18 plus_icon" >cloud_download</i>
                                 <CContainer>
-                                Download
+                                <CSVLink data={data.dat} target="_blank">Download</CSVLink>
                                 </CContainer>
                             </CRow>
                             </button>
