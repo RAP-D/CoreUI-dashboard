@@ -53,7 +53,7 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                 <CCol xs={4}>
                                         <CContainer className="heightadjust">
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
-                                                <img className="icon tower" src={ChargingText} alt="Charging"/>
+                                                <img className="icon towername" src={ChargingText} alt="Charging"/>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={4}>
