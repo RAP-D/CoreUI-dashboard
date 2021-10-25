@@ -15,61 +15,23 @@ import { useEffect,useState } from 'react';
 import { CSVLink } from 'react-csv';
 
 const Data = () => {
-    const initialDataState={
-        dat:[
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-            {title:'',unit:'',val:''},
-        ]
+    const initialData={
+            gridVoltage:'',
+            gridPower:'',
+            gridFrequency:'',
+            gridCurrent:'',
+            systemOutputVoltage:'',
+            systemOutputPower:'',
+            systemOutputFrequency:'',
+            systemOutputCurrent:'',
+            systemOutputLoadPercentage:'',
+            batteryVoltage:'',
+            batteryStatus:'',
+            PVInputVoltage1:'',
+            PVInputVoltage2:'',
+            PVPower:'',
     }
-    const [data, setData] = useState(initialDataState);
+    const [data, setData] = useState(initialData);
     const [generationLine, setGenerationLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const [gridHomeLine, setGridHomeLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const [dsrLoadsLine, setDsrLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
@@ -92,7 +54,25 @@ const Data = () => {
             })
             .then(response=>response.json())
             .then(data=>{
-                setData(data)
+                const pvPower=parseFloat(data.dat[40].val)+parseFloat(data.dat[41].val)
+                const gridPower=parseFloat(data.dat[27].val)
+                const systemOutputPower=parseFloat(data.dat[31].val)
+                setData({
+                    gridVoltage:data.dat[26].val+" "+data.dat[26].unit,
+                    gridPower:gridPower+" "+data.dat[27].unit,
+                    gridFrequency:data.dat[28].val+" "+data.dat[28].unit,
+                    gridCurrent:data.dat[29].val+" "+data.dat[29].unit,
+                    systemOutputVoltage:data.dat[30].val+" "+data.dat[30].unit,
+                    systemOutputPower:systemOutputPower+" "+data.dat[31].unit,
+                    systemOutputFrequency:data.dat[32].val+" "+data.dat[32].unit,
+                    systemOutputCurrent:data.dat[33].val+" "+data.dat[33].unit,
+                    systemOutputLoadPercentage:data.dat[34].val+" "+data.dat[34].unit,
+                    batteryVoltage:data.dat[37].val+" "+data.dat[37].unit,
+                    batteryStatus:data.dat[47].val,
+                    PVInputVoltage1:data.dat[43].val+" "+data.dat[43].unit,
+                    PVInputVoltage2:data.dat[44].val+" "+data.dat[44].unit,
+                    PVPower:pvPower+" "+data.dat[40].unit,
+                })
                 if(parseFloat(data.dat[40].val)+parseFloat(data.dat[41].val)===0){//for generation to stortera line
                     setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:0})
                 }else{
@@ -140,31 +120,31 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[37].val+" "+data.dat[37].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryVoltage}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Status</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[47].val}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryVoltage}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Input Voltage 1</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[43].val+" "+data.dat[43].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.PVInputVoltage1}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Input Voltage 2</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[44].val+" "+data.dat[44].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.PVInputVoltage2}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >PV Power</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{(parseInt(data.dat[40].val)+parseInt(data.dat[41].val))+" "+data.dat[40].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.PVPower}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -177,25 +157,25 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[26].val+" "+data.dat[26].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.gridVoltage}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Power (Import/Export)</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[27].val+" "+data.dat[27].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.gridPower}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Frequency</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[28].val+" "+data.dat[28].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.gridFrequency}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Grid Current</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[29].val+" "+data.dat[29].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.gridCurrent}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -208,25 +188,31 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Voltage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[30].val+" "+data.dat[30].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.systemOutputVoltage}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Frequency</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[31].val+" "+data.dat[31].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.systemOutputFrequency}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Current</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[32].val+" "+data.dat[32].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.systemOutputCurrent}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >System Output Load Percentage</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.dat[33].val+" "+data.dat[33].unit}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.systemOutputLoadPercentage}</CCol>
+                                    </CRow>
+                                </CListGroupItem>
+                                <CListGroupItem style={{fontSize:12, padding:5}}>
+                                    <CRow>
+                                        <CCol xs="6" sm="6" lg="6" >System Output Power</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.systemOutputPower}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                             </CListGroup>
@@ -265,7 +251,7 @@ const Data = () => {
                     <CCol xs="auto" className="me-auto"></CCol>
                     <CCol xs="auto">
                         <CContainer className="float-right p-0">
-                        <CSVLink data={data.dat} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>
+                        <CSVLink data={[data]} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>
                             <CRow>
                             <i className="material-icons md-18 plus_icon" >cloud_download</i>
                                 <CContainer>Download</CContainer>
