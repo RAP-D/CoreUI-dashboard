@@ -3,7 +3,7 @@ import Xarrow, { useXarrow, Xwrapper } from "react-xarrows";
 import './Diagram.css';
 import Generation from './Generation.svg';
 import GridHome from './GridHome.svg';
-import Stortera from './Generation.svg';
+import Stortera from './StorteraFlow.svg';
 import DsrLoads from './DsrLoads.svg';
 import CriticalLoads from './CriticalLoads.svg';
 import ChargingText from './ChargingText.svg'
