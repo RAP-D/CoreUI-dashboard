@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useState,useEffect} from 'react'
 import {
   CCard,
   CCardBody,
@@ -13,8 +13,34 @@ import {
 
 const Charts = () => {
 
+  const initialPredicrtions={
+    date:[],
+    charge_time:[],
+    actual_consumption:[],
+    actual_generation:[],
+    predicted_consumption:[],
+    predicted_generation:[]
+  }
+  const [Predictions, setPredictions] = useState(initialPredicrtions);
   let tommorow =new Date();
   tommorow.setDate(tommorow.getDate()+1)
+  useEffect(() => {
+    fetch('https://dashboard-backend-rapid.herokuapp.com/',{
+    method: "get",
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      setPredictions({
+        date:[data[4].date,data[3].date,data[2].date,data[1].date,data[0].date],
+        charge_time:[data[4].charge_time,data[3].charge_time,data[2].charge_time,data[1].charge_time,data[0].charge_time],
+        actual_consumption:[data[4].actual_consumption,data[3].actual_consumption,data[2].actual_consumption,data[1].actual_consumption,data[0].actual_consumption],
+        actual_generation:[data[4].actual_generation,data[3].actual_generation,data[2].actual_generation,data[1].actual_generation,data[0].actual_generation],
+        predicted_consumption:[data[4].predicted_consumption,data[3].predicted_consumption,data[2].predicted_consumption,data[1].predicted_consumption,data[0].predicted_consumption],
+        predicted_generation:[data[4].predicted_generation,data[3].predicted_generation,data[2].predicted_generation,data[1].predicted_generation,data[0].predicted_generation],
+      })
+    })
+    .catch(err=>{console.log(err)})
+  }, [])
 
   return ( 
     <CCardGroup columns className = "cols-2" >
@@ -55,13 +81,13 @@ const Charts = () => {
                 label: 'Actual',
                 borderColor: 'rgb(99,178,46)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: [10.978775, 8.549949999999999, 11.651725, 11.063525, 10.30405]
+                data: Predictions.actual_consumption
               },
               {
                 label: 'predicted',
                 borderColor: 'rgb(70,84,108)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: [12.45463, 9.2134634, 9.73245, 9.435461, 11.337]
+                data: Predictions.predicted_consumption
               }
             ]}
             options={{
@@ -69,7 +95,7 @@ const Charts = () => {
                 enabled: true
               }
             }}
-            labels="months"
+            labels={Predictions.date}
             
           />
         </CCardBody>
@@ -110,13 +136,13 @@ const Charts = () => {
                 label: 'Actual',
                 borderColor: 'rgb(99,178,46)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: [31.552550000000007, 7.3172, 6.101234435, 26.74808421053431, 25.125850034753]
+                data: Predictions.actual_generation
               },
               {
                 label: 'predicted',
                 borderColor: 'rgb(70,84,108)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: [24.09043263428642, 4.177478065197698, 8.35541751096211, 17.005611065997734, 21.863025672361708]
+                data: Predictions.predicted_generation
               }
             ]}
             options={{
@@ -124,7 +150,7 @@ const Charts = () => {
                 enabled: true
               }
             }}
-            labels="months"
+            labels={Predictions.date}
           />
         </CCardBody>
       </CCard>
