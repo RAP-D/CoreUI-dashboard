@@ -20,8 +20,8 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
 
                                         
                                         <CCol xs={4}>
-                                                <CContainer className="float-left heightadjust">
-                                                        <span className="nodeName">{data.PVPower}</span><br/>
+                                                <CContainer className="float-left heightadjust" style={{paddingTop:'1rem'}}>
+                                                        <span className="nodeName" style={{fontSize:"1.3rem"}}>{data.PVPower}</span><br/>
                                                         <CContainer className="nodeIcon" id="Generation">
                                                                 <img className="icon resize" src={Generation} alt="Generation"/><br/> 
                                                         </CContainer>
@@ -33,8 +33,8 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={4}>
-                                                <CContainer className="float-right heightadjust">
-                                                        <span className="nodeName">{data.gridPower}</span><br/>
+                                                <CContainer className="float-right heightadjust" style={{paddingTop:'1rem'}}>
+                                                        <span className="nodeName" style={{fontSize:"1.3rem"}}>{data.gridPower}</span><br/>
                                                         <CContainer className="nodeIcon" id="Grid">
                                                                 <img className="icon resize" src={GridHome} alt="Grid Home"/><br/>
                                                         </CContainer>
@@ -66,11 +66,11 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                              <CRow className="justify-content-center">
 
                                         <CCol xs={4}>
-                                                <CContainer className="float-left heightadjust">
+                                                <CContainer className="float-left heightadjust" style={{paddingBottom:'1rem'}}>
                                                         <CContainer className="nodeIcon" id="DsrLoads">
                                                                 <img className="icon resize" src={DsrLoads} alt="Dsr Loads"/><br/>
                                                         </CContainer>
-                                                        <span className="nodeName">0 W</span><br/>
+                                                        <span className="nodeName" style={{fontSize:"1.3rem"}}>0 W</span><br/>
                                                 </CContainer>
                                         </CCol>
                                         
@@ -80,11 +80,11 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                                 </CContainer>
                                         </CCol>
                                         <CCol xs={4}>
-                                                <CContainer className="float-right heightadjust">                                                     
+                                                <CContainer className="float-right heightadjust" style={{paddingBottom:'1rem'}}>                                                     
                                                         <CContainer className="nodeIcon" id="CriticalLoads">
                                                                 <img className="icon resize" src={CriticalLoads} alt="Critical Loads"/><br/>
                                                         </CContainer>
-                                                        <span className="nodeName">{data.systemOutputPower}</span><br/>
+                                                        <span className="nodeName" style={{fontSize:"1.3rem"}}>{data.systemOutputPower}</span><br/>
                                                 </CContainer>
                                         </CCol>
                              </CRow>
