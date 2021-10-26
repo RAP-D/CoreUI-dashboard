@@ -16,20 +16,20 @@ import { CSVLink } from 'react-csv';
 
 const Data = () => {
     const initialData={
-            gridVoltage:'',
-            gridPower:'',
-            gridFrequency:'',
-            gridCurrent:'',
-            systemOutputVoltage:'',
-            systemOutputPower:'',
-            systemOutputFrequency:'',
-            systemOutputCurrent:'',
-            systemOutputLoadPercentage:'',
-            batteryVoltage:'',
-            batteryStatus:'',
-            PVInputVoltage1:'',
-            PVInputVoltage2:'',
-            PVPower:'',
+            gridVoltage:'0 V',
+            gridPower:'0 W',
+            gridFrequency:'0 Hz',
+            gridCurrent:'0 A',
+            systemOutputVoltage:'0 W',
+            systemOutputPower:'0 W',
+            systemOutputFrequency:'0 HZ',
+            systemOutputCurrent:'0 A',
+            systemOutputLoadPercentage:'0 %',
+            batteryVoltage:'0 V',
+            batteryStatus:'Unknown',
+            PVInputVoltage1:'0 V',
+            PVInputVoltage2:'0 V',
+            PVPower:'0 V',
     }
     const [data, setData] = useState(initialData);
     const [generationLine, setGenerationLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
@@ -127,7 +127,7 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Status</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryVoltage}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryStatus}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
