@@ -68,7 +68,7 @@ const Dashboard = () => {
 
         <CTabContent className="pt-4">
           <CTabPane data-tab="statistical-overview" className="py-10">
-            <Data />
+            <Data/>
           </CTabPane>
           <CTabPane data-tab="data-chart">
             <Charts></Charts>

@@ -37,6 +37,7 @@ const Data = () => {
     const [dsrLoadsLine, setDsrLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const [criticalLoadsLine, setCriticalLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const MINUTE_MS =180000;
+    const id=window.location.href.split('/').lastItem
     const getData = () => {
         fetch('https://traicon.stortera.com/api/token/refresh',{
             method: "post",
@@ -48,7 +49,7 @@ const Data = () => {
         })
         .then(response=>response.json())
         .then(data=>{
-            fetch('https://traicon.stortera.com/api/inverter/operate/B3E19380158221/1/data-last',{
+            fetch(`https://traicon.stortera.com/api/inverter/operate/${window.location.href.split('/').lastItem}/1/data-last`,{
                 method: "get",
                 headers: {'Authorization': `Bearer ${data.access_token}`}
             })
@@ -87,7 +88,7 @@ const Data = () => {
                     setGridHomeLine({start:"StorTower",end:"Grid",startAnchor:["left", {position: "right", offset: {y: -20}}],endAnchor:"bottom",width:4})
                 }
                 //for dsrLoads to stortera line
-                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:4})
+                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:0})
                 //for criticalLoads to stortera line
                 if(parseFloat(data.dat[31].val)===0){
                     setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0})
@@ -108,7 +109,7 @@ const Data = () => {
             getData();
         }, MINUTE_MS);
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-    }, [])
+    }, [id])
     return (
         <>
             <CRow className="pt-10">

@@ -12,25 +12,33 @@ import {
 } from '@coreui/react-chartjs'
 
 const Charts = () => {
+  const id=window.location.href.split('/').lastItem
 
-  const initialPredicrtions={
+  const initialDataChartPredicrtions={
     date:[],
     charge_time:[],
     actual_consumption:[],
     actual_generation:[],
     predicted_consumption:[],
-    predicted_generation:[]
+    predicted_generation:[],
   }
-  const [Predictions, setPredictions] = useState(initialPredicrtions);
-  let tommorow =new Date();
-  tommorow.setDate(tommorow.getDate()+1)
+  const initialDataPredicrtions={
+    tommrrow_generation:0,
+    tommrrow_consumption:0,
+    charge_window:'',
+    charge_current:'',
+    date:''
+  }
+
+  const [dataChartPredictions, setDataChartPredictions] = useState(initialDataChartPredicrtions);
+  const [dataPredictions, setDataPredictions] = useState(initialDataPredicrtions);
   useEffect(() => {
-    fetch('https://dashboard-backend-rapid.herokuapp.com/',{
+    fetch(`https://dashboard-backend-rapid.herokuapp.com/ai_datapoints/${window.location.href.split('/').lastItem}`,{
     method: "get",
     })
     .then(response=>response.json())
     .then(data=>{
-      setPredictions({
+      setDataChartPredictions({
         date:[data[4].date,data[3].date,data[2].date,data[1].date,data[0].date],
         charge_time:[data[4].charge_time,data[3].charge_time,data[2].charge_time,data[1].charge_time,data[0].charge_time],
         actual_consumption:[data[4].actual_consumption,data[3].actual_consumption,data[2].actual_consumption,data[1].actual_consumption,data[0].actual_consumption],
@@ -40,7 +48,21 @@ const Charts = () => {
       })
     })
     .catch(err=>{console.log(err)})
-  }, [])
+    fetch(`https://dashboard-backend-rapid.herokuapp.com/tommrrow_prediction/${window.location.href.split('/').lastItem}`,{
+    method: "get",
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      setDataPredictions({
+        tommrrow_generation:data[0].tommrrow_generation,
+        tommrrow_consumption:data[0].tommrrow_consumption,
+        charge_window:data[0].charge_window,
+        charge_current:data[0].charge_current,
+        date:data[0].date
+      })
+    })
+    .catch(err=>{console.log(err)})
+  }, [id])
 
   return ( 
     <CCardGroup columns className = "cols-2" >
@@ -52,16 +74,16 @@ const Charts = () => {
           <CCol xs={6}>
             <CCard>
               <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>{String(tommorow.getDate()).padStart(2, '0')+'/'+String(tommorow.getMonth() + 1).padStart(2, '0')+'/'+tommorow.getFullYear()} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Generation (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Generation {dataPredictions.tommrrow_generation.toFixed(2)} (KWH)</p>
               </CCardBody>
             </CCard>
           </CCol>
           <CCol xs={6}>
             <CCard>
               <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>{String(tommorow.getDate()).padStart(2, '0')+'/'+String(tommorow.getMonth() + 1).padStart(2, '0')+'/'+tommorow.getFullYear()} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Consumption (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Consumption {dataPredictions.tommrrow_consumption.toFixed(2)} (KWH)</p>
               </CCardBody>
             </CCard>
           </CCol>
@@ -72,7 +94,7 @@ const Charts = () => {
 
       <CCard>
         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
-          Consumption Predictions vs Actual
+          Consumption Predictions (KWH) vs Actual (KWH)
         </CCardHeader>
         <CCardBody>
           <CChartLine
@@ -81,13 +103,13 @@ const Charts = () => {
                 label: 'Actual',
                 borderColor: 'rgb(99,178,46)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: Predictions.actual_consumption
+                data: dataChartPredictions.actual_consumption
               },
               {
-                label: 'predicted',
+                label: 'Predicted',
                 borderColor: 'rgb(70,84,108)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: Predictions.predicted_consumption
+                data: dataChartPredictions.predicted_consumption
               }
             ]}
             options={{
@@ -95,21 +117,21 @@ const Charts = () => {
                 enabled: true
               }
             }}
-            labels={Predictions.date}
+            labels={dataChartPredictions.date}
             
           />
         </CCardBody>
       </CCard>
 
       <CCard>
-        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>Calcutaion</CCardHeader>
+        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>Calculation</CCardHeader>
         <CCardBody>
           <CRow>
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>Change Window</p>
-                <p style={{fontSize:14, textAlign:"center"}}>12:30-23:45</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_window}</p>
                 </CCardBody>
               </CCard>
             </CCol>
@@ -117,7 +139,7 @@ const Charts = () => {
               <CCard>
                 <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>Charge Current A</p>
-                <p style={{fontSize:14, textAlign:"center"}}>2400A</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_current}A</p>
                 </CCardBody>
               </CCard>
             </CCol>
@@ -127,7 +149,7 @@ const Charts = () => {
 
       <CCard>
         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
-          PV Predictions vs Actual
+          PV Predictions (KWH) vs Actual (KWH)
         </CCardHeader>
         <CCardBody>
           <CChartLine
@@ -136,13 +158,13 @@ const Charts = () => {
                 label: 'Actual',
                 borderColor: 'rgb(99,178,46)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: Predictions.actual_generation
+                data: dataChartPredictions.actual_generation
               },
               {
-                label: 'predicted',
+                label: 'Predicted',
                 borderColor: 'rgb(70,84,108)',
                 backgroundColor: "rgb(0,0,0,0)",
-                data: Predictions.predicted_generation
+                data: dataChartPredictions.predicted_generation
               }
             ]}
             options={{
@@ -150,7 +172,7 @@ const Charts = () => {
                 enabled: true
               }
             }}
-            labels={Predictions.date}
+            labels={dataChartPredictions.date}
           />
         </CCardBody>
       </CCard>
