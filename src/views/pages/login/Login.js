@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState} from 'react'
+import { Link ,useHistory} from 'react-router-dom'
 import {
   CButton,
   CCard,
@@ -16,14 +16,16 @@ import {
   CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { useDispatch} from 'react-redux'
 
 const Login = () => {
-
+  const dispatch=useDispatch()
+  const history=useHistory()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit=()=> {
-    fetch('http://dashboard-backend-rapid.herokuapp.com/login',{
+    fetch('http://dashboard-backend-rapid.herokuapp.com/signin',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -33,14 +35,9 @@ const Login = () => {
         })
         .then(response=>response.json())
         .then(user=>{
-            if(user.type === "admin"){
-                console.log("admin")
-            }
-            else if(user.type === "user"){
-              console.log("user")
-            }else{
-              console.log("invalid password and username")
-            }
+          dispatch({type:'set',user:user.type})
+          history.push('/home')
+
         })
         .catch(err=>{console.log(err)})
   }

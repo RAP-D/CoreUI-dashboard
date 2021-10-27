@@ -14,9 +14,11 @@ import {
 import Charts from '../charts/Charts'
 import Data from './Data'
 import './Dashboard.css'
+import { useSelector } from 'react-redux'
 
 
 const Dashboard = () => {
+  console.log(useSelector(state=>state.user))
   return (
     <>
       <CTabs activeTab="statistical-overview">
