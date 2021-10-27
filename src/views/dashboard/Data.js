@@ -104,6 +104,26 @@ const Data = () => {
         }) 
      }
     useEffect(() => {
+        setData({
+            gridVoltage:'0 V',
+            gridPower:'0 W',
+            gridFrequency:'0 Hz',
+            gridCurrent:'0 A',
+            systemOutputVoltage:'0 W',
+            systemOutputPower:'0 W',
+            systemOutputFrequency:'0 HZ',
+            systemOutputCurrent:'0 A',
+            systemOutputLoadPercentage:'0 %',
+            batteryVoltage:'0 V',
+            batteryStatus:'Unknown',
+            PVInputVoltage1:'0 V',
+            PVInputVoltage2:'0 V',
+            PVPower:'0 V',
+        })
+        setGenerationLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
+        setGridHomeLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
+        setDsrLoadsLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
+        setCriticalLoadsLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
         getData();
         const interval = setInterval(() => {
             getData();

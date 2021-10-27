@@ -12,6 +12,7 @@ import {
 } from '@coreui/react-chartjs'
 
 const Charts = () => {
+
   const id=window.location.href.split('/').lastItem
 
   const initialDataChartPredicrtions={
@@ -25,14 +26,29 @@ const Charts = () => {
   const initialDataPredicrtions={
     tommrrow_generation:0,
     tommrrow_consumption:0,
-    charge_window:'',
+    charge_window:'None',
     charge_current:'',
-    date:''
+    date:'None'
   }
 
   const [dataChartPredictions, setDataChartPredictions] = useState(initialDataChartPredicrtions);
   const [dataPredictions, setDataPredictions] = useState(initialDataPredicrtions);
   useEffect(() => {
+    setDataChartPredictions({
+      date:[],
+      charge_time:[],
+      actual_consumption:[],
+      actual_generation:[],
+      predicted_consumption:[],
+      predicted_generation:[],
+    })
+    setDataPredictions({
+      tommrrow_generation:0,
+      tommrrow_consumption:0,
+      charge_window:'None',
+      charge_current:0,
+      date:'None'
+    })
     fetch(`https://dashboard-backend-rapid.herokuapp.com/ai_datapoints/${window.location.href.split('/').lastItem}`,{
     method: "get",
     })
@@ -54,8 +70,8 @@ const Charts = () => {
     .then(response=>response.json())
     .then(data=>{
       setDataPredictions({
-        tommrrow_generation:data[0].tommrrow_generation,
-        tommrrow_consumption:data[0].tommrrow_consumption,
+        tommrrow_generation:data[0].tommrrow_generation.toFixed(2),
+        tommrrow_consumption:data[0].tommrrow_consumption.toFixed(2),
         charge_window:data[0].charge_window,
         charge_current:data[0].charge_current,
         date:data[0].date
@@ -75,7 +91,7 @@ const Charts = () => {
             <CCard>
               <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Generation {dataPredictions.tommrrow_generation.toFixed(2)} (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Generation {dataPredictions.tommrrow_generation} (KWH)</p>
               </CCardBody>
             </CCard>
           </CCol>
@@ -83,7 +99,7 @@ const Charts = () => {
             <CCard>
               <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Consumption {dataPredictions.tommrrow_consumption.toFixed(2)} (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Consumption {dataPredictions.tommrrow_consumption} (KWH)</p>
               </CCardBody>
             </CCard>
           </CCol>
