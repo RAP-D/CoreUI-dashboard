@@ -10,10 +10,10 @@ import {
 import {
   CChartLine,
 } from '@coreui/react-chartjs'
+import { useHistory } from 'react-router'
 
 const Charts = () => {
-
-  const id=window.location.href.split('/').lastItem
+  const id=useHistory().location.pathname.split('/').lastItem
 
   const initialDataChartPredicrtions={
     date:[],
@@ -49,7 +49,8 @@ const Charts = () => {
       charge_current:0,
       date:'None'
     })
-    fetch(`https://dashboard-backend-rapid.herokuapp.com/ai_datapoints/${window.location.href.split('/').lastItem}`,{
+
+    fetch(`https://dashboard-backend-rapid.herokuapp.com/ai_datapoints/${id}`,{
     method: "get",
     })
     .then(response=>response.json())
@@ -64,7 +65,8 @@ const Charts = () => {
       })
     })
     .catch(err=>{console.log(err)})
-    fetch(`https://dashboard-backend-rapid.herokuapp.com/tommrrow_prediction/${window.location.href.split('/').lastItem}`,{
+
+    fetch(`https://dashboard-backend-rapid.herokuapp.com/tommrrow_prediction/${id}`,{
     method: "get",
     })
     .then(response=>response.json())
