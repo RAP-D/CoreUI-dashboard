@@ -22,29 +22,27 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleSubmit(event) {
-    fetch('http://localhost:3000/signin',{
+  const handleSubmit=()=> {
+    fetch('http://dashboard-backend-rapid.herokuapp.com/login',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
-                username:this.state.username,
-                password:this.state.password,
+                username:username,
+                password:password,
             })
         })
         .then(response=>response.json())
         .then(user=>{
-            if(user.type != "incorrect"){
-                this.props.loadUser(user);
-                this.props.onRouteChange('home');
+            if(user.type === "admin"){
+                console.log("admin")
             }
-            else{
-              this.props.onRouteChange('login');
+            else if(user.type === "user"){
+              console.log("user")
+            }else{
+              console.log("invalid password and username")
             }
-        });
-  }
-
-  function validateForm() {
-    return username.length > 0 && password.length > 0;
+        })
+        .catch(err=>{console.log(err)})
   }
 
   return (
@@ -55,7 +53,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm onSubmit={handleSubmit}>
+                  <CForm>
                     <h1>Login</h1>
                     <p className="text-muted">Sign In to your account</p>
                     <CInputGroup className="mb-3">
@@ -64,7 +62,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                      <CInput type="text" placeholder="Username" autoComplete="username" onChange={(e) => setUsername(e.target.value)}/>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -72,11 +70,11 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                      <CInput type="password" placeholder="Password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)}/>
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" disabled={!validateForm()}>Login</CButton>
+                        <CButton color="primary" className="px-4" onClick={()=>{handleSubmit()}}>Login</CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
                         <CButton color="link" className="px-0">Forgot password?</CButton>
