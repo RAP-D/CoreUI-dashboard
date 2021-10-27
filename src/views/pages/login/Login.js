@@ -33,9 +33,12 @@ const Login = () => {
         })
         .then(response=>response.json())
         .then(user=>{
-            if(user.id){
+            if(user.type != "incorrect"){
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');
+            }
+            else{
+              this.props.onRouteChange('login');
             }
         });
   }
