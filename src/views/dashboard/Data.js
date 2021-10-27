@@ -15,6 +15,8 @@ import { useEffect,useState } from 'react';
 import { CSVLink } from 'react-csv';
 
 const Data = () => {
+    const initialLine={ showXarrow:false ,animation:0 ,showHead:false,showTail:false}
+
     const initialData={
             gridVoltage:'0 V',
             gridPower:'0 W',
@@ -32,12 +34,34 @@ const Data = () => {
             PVPower:'0 V',
     }
     const [data, setData] = useState(initialData);
-    const [generationLine, setGenerationLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
-    const [gridHomeLine, setGridHomeLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
-    const [dsrLoadsLine, setDsrLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
-    const [criticalLoadsLine, setCriticalLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
+    const [generationLine, setGenerationLine] = useState(initialLine);
+    const [gridHomeLine, setGridHomeLine] = useState(initialLine);
+    const [dsrLoadsLine, setDsrLoadsLine] = useState(initialLine);
+    const [criticalLoadsLine, setCriticalLoadsLine] = useState(initialLine);
     const MINUTE_MS =180000;
     const id=window.location.href.split('/').lastItem
+    const resetData=()=>{
+        setData({
+            gridVoltage:'0 V',
+            gridPower:'0 W',
+            gridFrequency:'0 Hz',
+            gridCurrent:'0 A',
+            systemOutputVoltage:'0 W',
+            systemOutputPower:'0 W',
+            systemOutputFrequency:'0 HZ',
+            systemOutputCurrent:'0 A',
+            systemOutputLoadPercentage:'0 %',
+            batteryVoltage:'0 V',
+            batteryStatus:'Unknown',
+            PVInputVoltage1:'0 V',
+            PVInputVoltage2:'0 V',
+            PVPower:'0 V',
+    })
+        setGenerationLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+        setGridHomeLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+        setDsrLoadsLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+        setCriticalLoadsLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+    }
     const getData = () => {
         fetch('https://traicon.stortera.com/api/token/refresh',{
             method: "post",
@@ -58,6 +82,8 @@ const Data = () => {
                 const pvPower=parseFloat(data.dat[40].val)+parseFloat(data.dat[41].val)
                 const gridPower=parseFloat(data.dat[27].val)
                 const systemOutputPower=parseFloat(data.dat[31].val)
+                //TODO get drsPower
+                const drsPower=0
                 setData({
                     gridVoltage:data.dat[26].val+" "+data.dat[26].unit,
                     gridPower:gridPower+" "+data.dat[27].unit,
@@ -75,29 +101,35 @@ const Data = () => {
                     PVPower:pvPower+" "+data.dat[40].unit,
                 })
                 if(pvPower===0){//for generation to stortera line
-                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+                    setGenerationLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
                 }else if(pvPower>0){
-                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                    setGenerationLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
                 }else{
-                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                    setGenerationLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
                 }
 
-                if(gridPower>0){//for gridHome to stortera line
-                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:1 ,showHead:true,showTail:false})   
-                }else if(gridPower===0){
-                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+                if(gridPower===0){//for gridHome to stortera line
+                    setGridHomeLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})   
+                }else if(gridPower>0){
+                    setGridHomeLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
                 }else{
-                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                    setGridHomeLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
                 }
-                //for dsrLoads to stortera line
-                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:0})
+                
+                if(drsPower===0){//for dsrLoads to stortera line
+                    setDsrLoadsLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})   
+                }else if(drsPower>0){
+                    setDsrLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                }else{
+                    setDsrLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                }
                 //for criticalLoads to stortera line
                 if(systemOutputPower===0){
-                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+                    setCriticalLoadsLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})
                 }else if(systemOutputPower>0){
-                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4 ,showXarrow:true ,animation:-1 ,showHead:true,showTail:false})
+                    setCriticalLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
                 }else{
-                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4 ,showXarrow:true ,animation:1 ,showHead:false,showTail:true})
+                    setCriticalLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
                 }
 
             }).catch(err=>{
@@ -108,26 +140,7 @@ const Data = () => {
         }) 
      }
     useEffect(() => {
-        setData({
-            gridVoltage:'0 V',
-            gridPower:'0 W',
-            gridFrequency:'0 Hz',
-            gridCurrent:'0 A',
-            systemOutputVoltage:'0 W',
-            systemOutputPower:'0 W',
-            systemOutputFrequency:'0 HZ',
-            systemOutputCurrent:'0 A',
-            systemOutputLoadPercentage:'0 %',
-            batteryVoltage:'0 V',
-            batteryStatus:'Unknown',
-            PVInputVoltage1:'0 V',
-            PVInputVoltage2:'0 V',
-            PVPower:'0 V',
-        })
-        setGenerationLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
-        setGridHomeLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
-        setDsrLoadsLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
-        setCriticalLoadsLine({start:'',end:'',startAnchor:'',endAnchor:'',width:0})
+        resetData()
         getData();
         const interval = setInterval(() => {
             getData();
