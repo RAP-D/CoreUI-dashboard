@@ -88,10 +88,10 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                <Xarrow start={generationLine.start} startAnchor= {generationLine.startAnchor}  end={generationLine.end} endAnchor={generationLine.endAnchor} strokeWidth={generationLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
-                                <Xarrow start={gridHomeLine.start} startAnchor= {gridHomeLine.startAnchor}  end={gridHomeLine.end} endAnchor={gridHomeLine.endAnchor} strokeWidth={gridHomeLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
-                                <Xarrow start={dsrLoadsLine.start} startAnchor= {dsrLoadsLine.startAnchor}  end={dsrLoadsLine.end} endAnchor={dsrLoadsLine.endAnchor} strokeWidth={dsrLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true}/>
-                                <Xarrow start={criticalLoadsLine.start} startAnchor= {criticalLoadsLine.startAnchor}  end={criticalLoadsLine.end} endAnchor={criticalLoadsLine.endAnchor} strokeWidth={criticalLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: 1 }}  showHead={true} />
+                                <Xarrow start={generationLine.start} startAnchor= {generationLine.startAnchor}  end={generationLine.end} endAnchor={generationLine.endAnchor} strokeWidth={generationLine.width} color='#64B42C' path='grid' dashness={{ animation: generationLine.animation }}  showHead={generationLine.showHead} showTail={generationLine.showTail} />
+                                <Xarrow start={gridHomeLine.start} startAnchor= {gridHomeLine.startAnchor}  end={gridHomeLine.end} endAnchor={gridHomeLine.endAnchor} strokeWidth={gridHomeLine.width} color='#64B42C' path='grid' dashness={{ animation: gridHomeLine.animation }}  showHead={gridHomeLine.showHead} showTail={gridHomeLine.showTail} />
+                                <Xarrow start={dsrLoadsLine.start} startAnchor= {dsrLoadsLine.startAnchor}  end={dsrLoadsLine.end} endAnchor={dsrLoadsLine.endAnchor} strokeWidth={dsrLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: dsrLoadsLine.animation }}  showHead={dsrLoadsLine.showHead} showTail={dsrLoadsLine.showTail}/>
+                                <Xarrow start={criticalLoadsLine.start} startAnchor= {criticalLoadsLine.startAnchor}  end={criticalLoadsLine.end} endAnchor={criticalLoadsLine.endAnchor} strokeWidth={criticalLoadsLine.width} color='#64B42C' path='grid' dashness={{ animation: criticalLoadsLine.animation }}  showHead={criticalLoadsLine.showHead} showTail={criticalLoadsLine.showTail} />
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>

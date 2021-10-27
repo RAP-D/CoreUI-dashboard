@@ -74,26 +74,30 @@ const Data = () => {
                     PVInputVoltage2:data.dat[44].val+" "+data.dat[44].unit,
                     PVPower:pvPower+" "+data.dat[40].unit,
                 })
-                if(parseFloat(data.dat[40].val)+parseFloat(data.dat[41].val)===0){//for generation to stortera line
-                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:0})
+                if(pvPower===0){//for generation to stortera line
+                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+                }else if(pvPower>0){
+                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:1 ,showHead:true,showTail:false})
                 }else{
-                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4})
+                    setGenerationLine({start:"Generation",end:"StorTower",startAnchor:"bottom",endAnchor:["right", {position: "left", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
                 }
 
-                if(parseFloat(data.dat[27].val)>0){//for gridHome to stortera line
-                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4})   
-                }else if(parseFloat(data.dat[27].val)===0){
-                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:0})
+                if(gridPower>0){//for gridHome to stortera line
+                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:1 ,showHead:true,showTail:false})   
+                }else if(gridPower===0){
+                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
                 }else{
-                    setGridHomeLine({start:"StorTower",end:"Grid",startAnchor:["left", {position: "right", offset: {y: -20}}],endAnchor:"bottom",width:4})
+                    setGridHomeLine({start:"Grid",end:"StorTower",startAnchor:"bottom",endAnchor:["left", {position: "right", offset: {y: -20}}],width:4 ,showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
                 }
                 //for dsrLoads to stortera line
                 setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:0})
                 //for criticalLoads to stortera line
-                if(parseFloat(data.dat[31].val)===0){
-                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0})
+                if(systemOutputPower===0){
+                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0 ,showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+                }else if(systemOutputPower>0){
+                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4 ,showXarrow:true ,animation:-1 ,showHead:true,showTail:false})
                 }else{
-                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4})
+                    setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:4 ,showXarrow:true ,animation:1 ,showHead:false,showTail:true})
                 }
 
             }).catch(err=>{
