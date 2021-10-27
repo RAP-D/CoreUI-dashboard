@@ -16,20 +16,20 @@ import { CSVLink } from 'react-csv';
 
 const Data = () => {
     const initialData={
-            gridVoltage:'',
-            gridPower:'',
-            gridFrequency:'',
-            gridCurrent:'',
-            systemOutputVoltage:'',
-            systemOutputPower:'',
-            systemOutputFrequency:'',
-            systemOutputCurrent:'',
-            systemOutputLoadPercentage:'',
-            batteryVoltage:'',
-            batteryStatus:'',
-            PVInputVoltage1:'',
-            PVInputVoltage2:'',
-            PVPower:'',
+            gridVoltage:'0 V',
+            gridPower:'0 W',
+            gridFrequency:'0 Hz',
+            gridCurrent:'0 A',
+            systemOutputVoltage:'0 W',
+            systemOutputPower:'0 W',
+            systemOutputFrequency:'0 HZ',
+            systemOutputCurrent:'0 A',
+            systemOutputLoadPercentage:'0 %',
+            batteryVoltage:'0 V',
+            batteryStatus:'Unknown',
+            PVInputVoltage1:'0 V',
+            PVInputVoltage2:'0 V',
+            PVPower:'0 V',
     }
     const [data, setData] = useState(initialData);
     const [generationLine, setGenerationLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
@@ -37,6 +37,7 @@ const Data = () => {
     const [dsrLoadsLine, setDsrLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const [criticalLoadsLine, setCriticalLoadsLine] = useState({start:'',end:'',startAnchor:'',endAnchor:'',width:0});
     const MINUTE_MS =180000;
+    const id=window.location.href.split('/').lastItem
     const getData = () => {
         fetch('https://traicon.stortera.com/api/token/refresh',{
             method: "post",
@@ -48,7 +49,7 @@ const Data = () => {
         })
         .then(response=>response.json())
         .then(data=>{
-            fetch('https://traicon.stortera.com/api/inverter/operate/B3E19380158221/1/data-last',{
+            fetch(`https://traicon.stortera.com/api/inverter/operate/${window.location.href.split('/').lastItem}/1/data-last`,{
                 method: "get",
                 headers: {'Authorization': `Bearer ${data.access_token}`}
             })
@@ -87,7 +88,7 @@ const Data = () => {
                     setGridHomeLine({start:"StorTower",end:"Grid",startAnchor:["left", {position: "right", offset: {y: -20}}],endAnchor:"bottom",width:4})
                 }
                 //for dsrLoads to stortera line
-                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:4})
+                setDsrLoadsLine({start:"StorTower",end:"DsrLoads",startAnchor:["right", {position: "left", offset: {y: 20}}],endAnchor:"top",width:0})
                 //for criticalLoads to stortera line
                 if(parseFloat(data.dat[31].val)===0){
                     setCriticalLoadsLine({start:"StorTower",end:"CriticalLoads",startAnchor:["left", {position: "right", offset: {y: 20}}],endAnchor:"top",width:0})
@@ -108,7 +109,7 @@ const Data = () => {
             getData();
         }, MINUTE_MS);
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-    }, [])
+    }, [id])
     return (
         <>
             <CRow className="pt-10">
@@ -126,7 +127,7 @@ const Data = () => {
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
                                     <CRow>
                                         <CCol xs="6" sm="6" lg="6" >Battery Status</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryVoltage}</CCol>
+                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>{data.batteryStatus}</CCol>
                                     </CRow>
                                 </CListGroupItem>
                                 <CListGroupItem style={{fontSize:12, padding:5}}>
