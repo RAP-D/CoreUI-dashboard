@@ -77,7 +77,7 @@ const Data = () => {
             .then(data=>{
                 fetch(`https://traicon.stortera.com/api/inverter/operate/${id}/1/data-last`,{
                     method: "get",
-                    mode:'*',
+                    mode:'no-cros',
                     headers: {'Authorization': `Bearer ${data.access_token}`}
                 })
                 .then(response=>response.json())
