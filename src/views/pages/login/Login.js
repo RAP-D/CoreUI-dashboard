@@ -25,7 +25,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit=()=> {
-    fetch('http://dashboard-backend-rapid.herokuapp.com/signin',{
+    fetch('https://dashboard-backend-rapid.herokuapp.com/login',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -36,8 +36,9 @@ const Login = () => {
         .then(response=>response.json())
         .then(user=>{
           dispatch({type:'set',user:user.type})
-          history.push('/home')
-
+          if(user.type!=="Invalid"){
+            history.push('/home')
+          }
         })
         .catch(err=>{console.log(err)})
   }
