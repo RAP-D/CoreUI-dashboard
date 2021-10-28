@@ -157,7 +157,7 @@ const Charts = () => {
               <CCard>
                 <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>Charge Current</p>
-                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_current}A</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_current} (A)</p>
                 </CCardBody>
               </CCard>
             </CCol>
