@@ -52,6 +52,7 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                 </CCol>
                                 <CCol xs={4}>
                                         <CContainer className="heightadjust">
+                                                <h1 style={{fontSize:25}}><strong>StorTower</strong></h1>
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
                                                 <img className="icon towername" src={ChargingText} alt="Charging"/>
                                         </CContainer>
@@ -88,10 +89,10 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                                 </CContainer>
                                         </CCol>
                              </CRow>
-                                {generationLine.showXarrow ? <Xarrow start={"Generation"} end={"StorTower"} startAnchor={"bottom"} endAnchor={["right", {position: "left", offset: {y: -20}}]}  color='#64B42C' path='grid' dashness={{ animation: generationLine.animation }}  showHead={generationLine.showHead} showTail={generationLine.showTail} />:null}
-                                {gridHomeLine.showXarrow ? <Xarrow start={"Grid"}end={"StorTower"} startAnchor={"bottom"} endAnchor={["left", {position: "right", offset: {y: -20}}]} color='#64B42C' path='grid' dashness={{ animation: gridHomeLine.animation }}  showHead={gridHomeLine.showHead} showTail={gridHomeLine.showTail} />:null}
-                                {dsrLoadsLine.showXarrow ? <Xarrow start={"StorTower"} end={"DsrLoads"} startAnchor={["right", {position: "left", offset: {y: 20}}]} endAnchor={"top"} color='#64B42C' path='grid' dashness={{ animation: dsrLoadsLine.animation }}  showHead={dsrLoadsLine.showHead} showTail={dsrLoadsLine.showTail}/>:null}
-                                {criticalLoadsLine.showXarrow? <Xarrow start={"StorTower"} end={"CriticalLoads"} startAnchor={["left", {position: "right", offset: {y: 20}}]} endAnchor={"top"} color='#64B42C' path='grid' dashness={{ animation: criticalLoadsLine.animation }}  showHead={criticalLoadsLine.showHead} showTail={criticalLoadsLine.showTail} />:null}
+                                {generationLine.showXarrow ? <Xarrow start={"Generation"} end={"StorTower"} startAnchor={"bottom"} endAnchor={["right", {position: "left", offset: {y: -20}}]}  color={generationLine.color} path='grid' dashness={{ animation: generationLine.animation }}  showHead={generationLine.showHead} showTail={generationLine.showTail} />:null}
+                                {gridHomeLine.showXarrow ? <Xarrow start={"Grid"}end={"StorTower"} startAnchor={"bottom"} endAnchor={["left", {position: "right", offset: {y: -20}}]} color={gridHomeLine.color} path='grid' dashness={{ animation: gridHomeLine.animation }}  showHead={gridHomeLine.showHead} showTail={gridHomeLine.showTail} />:null}
+                                {dsrLoadsLine.showXarrow ? <Xarrow start={"StorTower"} end={"DsrLoads"} startAnchor={["right", {position: "left", offset: {y: 20}}]} endAnchor={"top"} color={dsrLoadsLine.color} path='grid' dashness={{ animation: dsrLoadsLine.animation }}  showHead={dsrLoadsLine.showHead} showTail={dsrLoadsLine.showTail}/>:null}
+                                {criticalLoadsLine.showXarrow? <Xarrow start={"StorTower"} end={"CriticalLoads"} startAnchor={["left", {position: "right", offset: {y: 20}}]} endAnchor={"top"} color={criticalLoadsLine.color} path='grid' dashness={{ animation: criticalLoadsLine.animation }}  showHead={criticalLoadsLine.showHead} showTail={criticalLoadsLine.showTail} />:null}
                      </CContainer>
                 </ResizeObserver>
             </Xwrapper>

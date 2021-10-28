@@ -106,16 +106,7 @@ const TheSidebar = () => {
               to: '/home/dashboard/B3E19380135111',
               icon: 'cil-input-power',
             }
-          ]:userType==='user'?[{
-            _tag: 'CSidebarNavTitle',
-            _children: ['All Houses']
-          },
-          {
-            _tag: 'CSidebarNavItem',
-            name: 'House 1',
-            to: '/home/dashboard/B3E19380158221',
-            icon: 'cil-input-power',
-          },]:[
+          ]:[
             {
               _tag: 'CSidebarNavTitle',
               _children: ['All Houses']

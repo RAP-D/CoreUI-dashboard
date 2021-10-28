@@ -12,13 +12,12 @@ import {
 import Diagram from './Diagram/Diagram'
 import './Data.css'
 import { useEffect,useState } from 'react';
-import { CSVLink } from 'react-csv';
 import { useHistory } from 'react-router';
 
 const Data = () => {
     const MINUTE_MS =180000;
     const id=useHistory().location.pathname.split('/').lastItem
-    const initialLine={ showXarrow:false ,animation:0 ,showHead:false,showTail:false}
+    const initialLine={ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'}
     const initialData={
             gridVoltage:'0 V',
             gridPower:'0 W',
@@ -57,10 +56,10 @@ const Data = () => {
             PVInputVoltage2:'0 V',
             PVPower:'0 V',
     })
-        setGenerationLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
-        setGridHomeLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
-        setDsrLoadsLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
-        setCriticalLoadsLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+        setGenerationLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+        setGridHomeLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+        setDsrLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+        setCriticalLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
     }
     
     useEffect(() => {
@@ -104,35 +103,35 @@ const Data = () => {
                         PVPower:pvPower+" "+data.dat[40].unit,
                     })
                     if(pvPower===0){//for generation to stortera line
-                        setGenerationLine({ showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+                        setGenerationLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
                     }else if(pvPower>0){
-                        setGenerationLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                        setGenerationLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false,color:'#64B42C'})
                     }else{
-                        setGenerationLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                        setGenerationLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true,color:'#64B42C'})
                     }
     
                     if(gridPower===0){//for gridHome to stortera line
-                        setGridHomeLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})   
+                        setGridHomeLine({showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})   
                     }else if(gridPower>0){
-                        setGridHomeLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                        setGridHomeLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true,color:'#64B42C'})
                     }else{
-                        setGridHomeLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                        setGridHomeLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false,color:'#64B42C'})
                     }
                     
                     if(drsPower===0){//for dsrLoads to stortera line
-                        setDsrLoadsLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})   
+                        setDsrLoadsLine({showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})   
                     }else if(drsPower>0){
-                        setDsrLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                        setDsrLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false,color:'#64B42C'})
                     }else{
-                        setDsrLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                        setDsrLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true,color:'#64B42C'})
                     }
                     //for criticalLoads to stortera line
                     if(systemOutputPower===0){
-                        setCriticalLoadsLine({showXarrow:false ,animation:0 ,showHead:false,showTail:false})
+                        setCriticalLoadsLine({showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
                     }else if(systemOutputPower>0){
-                        setCriticalLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false})
+                        setCriticalLoadsLine({showXarrow:true ,animation:1 ,showHead:true,showTail:false,color:'#64B42C'})
                     }else{
-                        setCriticalLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true})
+                        setCriticalLoadsLine({showXarrow:true ,animation:-1 ,showHead:false,showTail:true,color:'#64B42C'})
                     }
     
                 }).catch(err=>{
@@ -268,39 +267,6 @@ const Data = () => {
                             <Diagram data={data} generationLine={generationLine} gridHomeLine={gridHomeLine} dsrLoadsLine={dsrLoadsLine} criticalLoadsLine={criticalLoadsLine}/>
                         </CWidgetSimple> 
                     </CContainer>
-                    </CRow>
-                    {/*<CCard>
-                        <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>LOADS</CCardHeader>
-                        <CCardBody style={{padding:5}}>
-                            <CListGroup>
-                                <CListGroupItem style={{fontSize:12, padding:5}}>
-                                    <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >CRITICAL LOAD POWER</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
-                                    </CRow>
-                                </CListGroupItem>
-                                <CListGroupItem style={{fontSize:12, padding:5}}>
-                                    <CRow>
-                                        <CCol xs="6" sm="6" lg="6" >CRITICAL LOAD POWER</CCol>
-                                        <CCol xs="6" sm="6" lg="6" style={{textAlign:'center'}}>53V</CCol>
-                                    </CRow>
-                                </CListGroupItem>
-                            </CListGroup>
-                        </CCardBody>
-                    </CCard>*/}
-                    <CRow>
-                    <CCol xs="auto" className="me-auto"></CCol>
-                    <CCol xs="auto">
-                        <CContainer className="float-right p-0">
-                        <CSVLink data={[data]} target="_blank" className="btn btn-dark" filename={"Datasheet.csv"}>
-                            <CRow>
-                            <i className="material-icons md-18 plus_icon" >cloud_download</i>
-                                <CContainer>Download</CContainer>
-                            </CRow>
-                        </CSVLink>
-                        </CContainer>
-                    </CCol>
-                        
                     </CRow>
                 </CCol>   
             </CRow>

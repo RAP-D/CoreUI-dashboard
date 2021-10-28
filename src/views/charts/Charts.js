@@ -148,7 +148,7 @@ const Charts = () => {
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Charge Window</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Charge Window</p>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_window} (HHMM-HHMM)</p>
                 </CCardBody>
               </CCard>
@@ -156,7 +156,7 @@ const Charts = () => {
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Charge Current</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Charge Current</p>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_current} (A)</p>
                 </CCardBody>
               </CCard>
