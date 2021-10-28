@@ -93,7 +93,7 @@ const Charts = () => {
             <CCard>
               <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Generation {dataPredictions.tommrrow_generation} (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Generation {dataPredictions.tommrrow_generation} (kWh)</p>
               </CCardBody>
             </CCard>
           </CCol>
@@ -101,7 +101,7 @@ const Charts = () => {
             <CCard>
               <CCardBody>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.date} Predicted</p>
-                <p style={{fontSize:14, textAlign:"center"}}>Consumption {dataPredictions.tommrrow_consumption} (KWH)</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Consumption {dataPredictions.tommrrow_consumption} (kWh)</p>
               </CCardBody>
             </CCard>
           </CCol>
@@ -112,7 +112,7 @@ const Charts = () => {
 
       <CCard>
         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
-          Consumption Predictions (KWH) vs Actual (KWH)
+          Consumption Predictions (kWh) vs Actual (kWh)
         </CCardHeader>
         <CCardBody>
           <CChartLine
@@ -148,15 +148,15 @@ const Charts = () => {
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Change Window</p>
-                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_window}</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Charge Window</p>
+                <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_window} (HHMM-HHMM)</p>
                 </CCardBody>
               </CCard>
             </CCol>
             <CCol xs={6}>
               <CCard>
                 <CCardBody>
-                <p style={{fontSize:14, textAlign:"center"}}>Charge Current A</p>
+                <p style={{fontSize:14, textAlign:"center"}}>Charge Current</p>
                 <p style={{fontSize:14, textAlign:"center"}}>{dataPredictions.charge_current}A</p>
                 </CCardBody>
               </CCard>
@@ -167,7 +167,7 @@ const Charts = () => {
 
       <CCard>
         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>
-          PV Predictions (KWH) vs Actual (KWH)
+          PV Predictions (kWh) vs Actual (kWh)
         </CCardHeader>
         <CCardBody>
           <CChartLine
