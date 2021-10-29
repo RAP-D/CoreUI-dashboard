@@ -47,7 +47,7 @@ const Login = () => {
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md="8">
+          <CCol md="4">
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
@@ -72,7 +72,7 @@ const Login = () => {
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
-                        <CButton color="primary" className="px-4" onClick={()=>{handleSubmit()}}>Login</CButton>
+                        <CButton color="success" className="px-4" onClick={()=>{handleSubmit()}}>Login</CButton>
                       </CCol>
                     </CRow>
                   </CForm>
