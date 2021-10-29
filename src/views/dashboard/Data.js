@@ -56,10 +56,10 @@ const Data = () => {
             PVInputVoltage2:'0 V',
             PVPower:'0 V',
     })
-        setGenerationLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
-        setGridHomeLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
-        setDsrLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
-        setCriticalLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false})
+        setGenerationLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
+        setGridHomeLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
+        setDsrLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
+        setCriticalLoadsLine({ showXarrow:true ,animation:0 ,showHead:false,showTail:false,color:'#E0E0E0'})
     }
     
     useEffect(() => {

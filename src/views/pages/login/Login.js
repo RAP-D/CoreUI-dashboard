@@ -38,6 +38,8 @@ const Login = () => {
           dispatch({type:'set',user:user.type})
           if(user.type!=="Invalid"){
             history.push('/home/dashboard/B3E19380158221')
+          }else{
+            alert("Invalid Password Or Username try again")
           }
         })
         .catch(err=>{console.log(err)})
@@ -60,7 +62,7 @@ const Login = () => {
                           <CIcon name="cil-user" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="text" placeholder="Username" autoComplete="username" onChange={(e) => setUsername(e.target.value)}/>
+                      <CInput type="text" placeholder="Username" autoComplete="username" onChange={(e) => setUsername(e.target.value)} required/>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupPrepend>
@@ -68,7 +70,7 @@ const Login = () => {
                           <CIcon name="cil-lock-locked" />
                         </CInputGroupText>
                       </CInputGroupPrepend>
-                      <CInput type="password" placeholder="Password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)}/>
+                      <CInput type="password" placeholder="Password" autoComplete="current-password" onChange={(e) => setPassword(e.target.value)} required/>
                     </CInputGroup>
                     <CRow>
                       <CCol xs="6">
