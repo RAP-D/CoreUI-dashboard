@@ -8,15 +8,14 @@ import {
   CHeaderBrand,
   CHeaderNav,
   CHeaderNavItem,
-  CHeaderNavLink,
+  /*CHeaderNavLink,*/
 
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 
 
-const history = useHistory;
-
 const TheHeader = () => {
+  const history = useHistory();
   const dispatch = useDispatch()
   const sidebarShow = useSelector(state => state.sidebarShow)
 
@@ -42,21 +41,22 @@ const TheHeader = () => {
         className="ml-3 d-md-down-none"
         onClick={toggleSidebar}
       />
-      <CHeaderBrand className="mx-auto d-lg-none" to="/">
+      <CHeaderBrand className="mx-auto d-lg-none" to="/Home/Dashboard">
         <CIcon name="logo" height="48" alt="Logo" />
       </CHeaderBrand>
-
-      <CHeaderNav className="d-md-down-none mr-auto">
+      
+        <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/dashboard">Home</CHeaderNavLink>
+          {/*<CHeaderNavLink to="/dashboard">Home</CHeaderNavLink>*/}
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/users">Alerts</CHeaderNavLink>
+          {/*<CHeaderNavLink to="/users">Alerts</CHeaderNavLink>*/}
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/base/carousels">Settings</CHeaderNavLink>
+          {/*<CHeaderNavLink to="/base/carousels">Settings</CHeaderNavLink>*/}
         </CHeaderNavItem>
       </CHeaderNav>
+      
 
       <CHeaderNav className="px-3">
 
