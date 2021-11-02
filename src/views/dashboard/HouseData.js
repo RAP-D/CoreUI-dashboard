@@ -10,7 +10,7 @@ import {
   CListGroupItem,
   } from '@coreui/react'
 import Diagram from './Diagram/Diagram'
-import './Data.css'
+import './HouseData.css'
 import { useEffect,useState } from 'react';
 import { useHistory } from 'react-router';
 

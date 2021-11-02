@@ -11,9 +11,11 @@ import {
   CContainer,
 } from '@coreui/react'
 import Charts from '../charts/Charts'
-import Data from './Data'
+import Storhub from './StorhubData'
+import HouseData from './HouseData'
 import DataDetail from './DataDetail'
 import './Dashboard.css'
+import { useHistory } from 'react-router'
 
 
 const Dashboard = () => {
@@ -22,6 +24,7 @@ const Dashboard = () => {
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
   today = mm + '/' + dd + '/' + yyyy;
+  const dataType=useHistory().location.pathname.split('/')[useHistory().location.pathname.split('/').length-2];
   return ( 
     <>
       <CTabs activeTab="statistical-overview">
@@ -33,7 +36,7 @@ const Dashboard = () => {
             System Overview
             </CNavLink>
           </CNavItem>
-
+          {dataType==='house'? <> 
           <CNavItem>
             <CNavLink data-tab="data-chart" className="text-success">
               AI Overview
@@ -51,6 +54,7 @@ const Dashboard = () => {
               Data Detail
             </CNavLink>
           </CNavItem>
+          </>:null}
 
           <CNavItem className="ml-auto pt-2">
             <CContainer  >
@@ -63,7 +67,7 @@ const Dashboard = () => {
 
         <CTabContent className="pt-4">
           <CTabPane data-tab="statistical-overview" className="py-10">
-            <Data/>
+          {dataType==='storhub'?<Storhub/>:<HouseData/>}
           </CTabPane>
           <CTabPane data-tab="data-chart">
             <Charts></Charts>
