@@ -6,7 +6,6 @@ import GridHome from './GridHome.svg';
 import Stortera from './StorteraFlow.svg';
 import DsrLoads from './DsrLoads.svg';
 import CriticalLoads from './CriticalLoads.svg';
-import ChargingText from './ChargingText.svg'
 import ResizeObserver from 'rc-resize-observer';
 import { CContainer, CRow, CCol } from "@coreui/react";
 
@@ -54,7 +53,7 @@ const Diagram = ({data,generationLine,gridHomeLine,dsrLoadsLine,criticalLoadsLin
                                         <CContainer className="heightadjust">
                                                 <h1 style={{fontSize:25}}><strong>StorTower</strong></h1>
                                                 <img className="icon tower" src={Stortera} alt="StorTower" id="StorTower"/><br/>
-                                                <img className="icon towername" src={ChargingText} alt="Charging"/>
+                                                <h1 style={{fontSize:20}}><strong>{data.batteryStatus}</strong></h1>
                                         </CContainer>
                                 </CCol>
                                 <CCol xs={4}>

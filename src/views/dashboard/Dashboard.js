@@ -17,6 +17,11 @@ import './Dashboard.css'
 
 
 const Dashboard = () => {
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+  today = mm + '/' + dd + '/' + yyyy;
   return ( 
     <>
       <CTabs activeTab="statistical-overview">
@@ -50,6 +55,7 @@ const Dashboard = () => {
           <CNavItem className="ml-auto pt-2">
             <CContainer  >
               Status:<CBadge className="ml-2"color="success"> Normal </CBadge>
+              <h1>Time : {today}</h1>
             </CContainer>
           </CNavItem>
         </CNav>

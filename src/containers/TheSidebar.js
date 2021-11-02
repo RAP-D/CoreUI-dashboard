@@ -105,7 +105,20 @@ const TheSidebar = () => {
               name: 'House 10',
               to: '/home/dashboard/B3E19380135111',
               icon: 'cil-input-power',
+            },
+            {
+              _tag: 'CSidebarNavItem',
+              name: 'Storhub-KMCC',
+              to: '',
+              icon: 'cil-input-power',
+            },
+            {
+              _tag: 'CSidebarNavItem',
+              name: 'Storhub-Townhall',
+              to: '/home/dashboard/B3E19380135111',
+              icon: 'cil-input-power',
             }
+
           ]:[
             {
               _tag: 'CSidebarNavTitle',
