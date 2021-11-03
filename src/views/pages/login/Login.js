@@ -37,7 +37,7 @@ const Login = () => {
         .then(user=>{
           dispatch({type:'set',user:user.type})
           if(user.type!=="Invalid"){
-            history.push('/home/dashboard/B3E19380158221')
+            history.push('/home/house/B3E19380158221')
           }else{
             alert("Invalid Password Or Username try again")
           }
