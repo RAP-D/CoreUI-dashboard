@@ -129,7 +129,7 @@ const DataDetail=()=>{
         <CDataTable
           items={tableData}
           fields={fields}
-          itemsPerPage={15}
+          itemsPerPage={20}
           hover
           sorter
           pagination
