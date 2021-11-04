@@ -113,33 +113,53 @@ const Data = () => {
     }
     
     useEffect(() => {
-        const getData = () => {
-            fetch('',{
-                method: "post",
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({
-                    username: "powerforward",
-                    password: "VoMlJevkd3e3NUcx2ntMZA"
-                })
+        const getData=()=>{
+            fetch(`https://dashboard-backend-rapid.herokuapp.com/storhubs/${id}`, {
+                method: "get",
             })
-            .then(response=>response.json())
-            .then(data=>{
-                fetch(``,{
-                    method: "get",
-                    mode:'cors',
-                    headers: {'Authorization': `Bearer ${data.access_token}`}
+            .then(response => response.json())
+            .then(data => {
+                const aCActivePowerTotalTemp=parseFloat(data[22].value) 
+                setData({
+                    alarmStatus:data[0].value,
+                    faultStatus:data[0].value,
+                    systemStatus: aCActivePowerTotalTemp>0?'Charging':aCActivePowerTotalTemp===0? 'Standby':'Discharging',
+                    aCLineVoltageL1toL2:data[1].value,
+                    aCLineVoltageL2toL3:data[2].value,
+                    aCLineVoltageL3toL1:data[3].value,
+                    aCCurrentL1:data[4].value,
+                    aCCurrentL2:data[5].value,
+                    aCCurrentL3:data[6].value,
+                    aCFrequency:data[7].value,
+                    aCActivePowerL1:data[8].value,
+                    aCActivePowerL2:data[9].value,
+                    aCActivePowerL3:data[10].value,
+                    aCReactivePowerL1:data[11].value,
+                    aCReactivePowerL2:data[12].value,
+                    aCReactivePowerL3:data[13].value,
+                    aCApparentPowerL1:data[14].value,
+                    aCApparentPowerL2:data[15].value,
+                    aCApparentPowerL3:data[16].value,
+                    aCPFPowerL1:data[17].value,
+                    aCPFPowerL2:data[18].value,
+                    aCPFPowerL3:data[19].value,
+                    aCActivePowerTotal:aCActivePowerTotalTemp,
+                    aCReactivePowerTotal:data[23].value,
+                    aCApparentPowerTotal:data[24].value,
+                    aCPFTotal:data[25].value,
+                    gridInterconMode:data[26].value,
+                    reactivePowerConMode:data[27].value,
+                    pFSetPoint:data[28].value,
+                    activePowerSetPoint:data[29].value,
+                    reactivePowerSetPoint:data[30].value,
+                    activePowerControlMode:data[31].value
                 })
-                .then(response=>response.json())
-                .then(data=>{
-                    setData({})
-                }).catch(err=>{
-                    console.log(err)
-                })
-            }).catch(err=>{
-                console.log(err)
-            }) 
-         }
 
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
         resetData()
         getData()
         const interval = setInterval(() => {

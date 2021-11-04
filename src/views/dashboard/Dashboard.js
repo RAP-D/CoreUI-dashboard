@@ -16,14 +16,23 @@ import HouseData from './HouseData'
 import DataDetail from './DataDetail'
 import './Dashboard.css'
 import { useHistory } from 'react-router'
+import { useEffect,useState } from 'react'
 
 
 const Dashboard = () => {
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, '0');
-  var mm = String(today.getMonth() + 1).padStart(2, '0');
-  var yyyy = today.getFullYear();
-  today = mm + '/' + dd + '/' + yyyy;
+  const [date,setDate]=useState('0000-00-00');
+  useEffect(() => {
+    fetch(`https://dashboard-backend-rapid.herokuapp.com/house/B3E19380158221`, {
+                method: "get",
+            })
+            .then(response => response.json())
+            .then(data => {
+              setDate(data[22].val.split(' ')[0])
+            })
+            .catch(err=>{
+              console.log(err)
+            })
+  }, []);
   const dataType=useHistory().location.pathname.split('/')[useHistory().location.pathname.split('/').length-2];
   return ( 
     <>
@@ -58,8 +67,8 @@ const Dashboard = () => {
 
           <CNavItem className="ml-auto pt-2">
             <CContainer  >
-              Status:<CBadge className="ml-2"color="success"> Normal </CBadge>
-              <h1>Date : {today}</h1>
+              Status:<CBadge className="ml-2"color="success"> Online </CBadge>
+              <h1>Date : {date}</h1>
             </CContainer>
           </CNavItem>
         </CNav>
@@ -69,6 +78,7 @@ const Dashboard = () => {
           <CTabPane data-tab="statistical-overview" className="py-10">
           {dataType==='storhub'?<Storhub/>:<HouseData/>}
           </CTabPane>
+          {dataType==='house'? <>
           <CTabPane data-tab="data-chart">
             <Charts></Charts>
           </CTabPane>
@@ -77,7 +87,7 @@ const Dashboard = () => {
           </CTabPane>
           <CTabPane data-tab="data-detail">
             <DataDetail/>
-          </CTabPane>
+          </CTabPane></>:null}
         </CTabContent>
 
       </CTabs>
