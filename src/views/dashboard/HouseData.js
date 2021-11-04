@@ -69,11 +69,14 @@ const Data = () => {
             })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 const pvPower = parseFloat(data[14].val) + parseFloat(data[13].val)
                 const gridVoltage=parseFloat(data[5].val).toFixed(0)
                 const gridCurrent=parseFloat(data[1].val).toFixed(0)
-                const gridPower = gridCurrent*gridVoltage//parseFloat(data.dat[27].val)
-                const systemOutputPower = 0//parseFloat(data.dat[31].val)
+                const systemOutputVoltage=parseFloat(data[10].val)
+                const systemOutputCurrent=parseFloat(data[8].val)
+                const gridPower = gridCurrent*gridVoltage
+                const systemOutputPower = systemOutputCurrent*systemOutputVoltage
                 //TODO get drsPower
                 const drsPower = 0
                 setData({
@@ -81,12 +84,12 @@ const Data = () => {
                     gridPower: gridPower + " " + data[13].unit,
                     gridFrequency: data[2].val + " " + data[2].unit,
                     gridCurrent: gridCurrent + " " + data[1].unit,
-                    systemOutputVoltage: data[10].val + " " + data[10].unit,
+                    systemOutputVoltage: systemOutputVoltage + " " + data[10].unit,
                     systemOutputPower: systemOutputPower + " " + data[13].unit,
-                    systemOutputFrequency: 0 +" Hz",
-                    systemOutputCurrent: data[8].val + " " + data[8].unit,
-                    systemOutputLoadPercentage: 0 + " %",
-                    batteryVoltage: data[17].val + " " + data[17].unit,
+                    systemOutputFrequency: "60 Hz",
+                    systemOutputCurrent: systemOutputCurrent + " " + data[8].unit,
+                    systemOutputLoadPercentage: data[22].val +" "+data[22].unit,
+                    batteryVoltage: data[17].val + " V",
                     batteryStatus: data[20].val,
                     PVInputVoltage1: data[15].val + " " + data[15].unit,
                     PVInputVoltage2: data[9].val + " " + data[9].unit,

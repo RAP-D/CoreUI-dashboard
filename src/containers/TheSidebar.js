@@ -115,7 +115,7 @@ const TheSidebar = () => {
             {
               _tag: 'CSidebarNavItem',
               name: 'Storhub-Townhall',
-              to: '/home/storhub/Townhall',
+              to: '/home/storhub/townhall',
               icon: 'cil-input-power',
             }
 
