@@ -27,7 +27,7 @@ const Dashboard = () => {
             })
             .then(response => response.json())
             .then(data => {
-              setDate(data[24].val.split(' ')[0])
+              setDate(data[1].val.split(' ')[0])
             })
             .catch(err=>{
               console.log(err)

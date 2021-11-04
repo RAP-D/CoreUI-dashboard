@@ -183,7 +183,7 @@ const Data = () => {
     return (
         <>
             <CRow className="pt-10">
-                <CCol xs="12" sm="6" lg="5">
+                {/*<CCol xs="12" sm="6" lg="5">*/ }
                     <CCard>
                         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>PCS Information</CCardHeader>
                         <CCardBody style={{padding:5}}>
@@ -383,9 +383,9 @@ const Data = () => {
                             </CListGroup>
                         </CCardBody>
                     </CCard>
-                </CCol>
+                    {/*</CCol>*/ }
 
-                <CCol xs="12" sm="6" lg="7">
+                {/*<CCol xs="12" sm="6" lg="7">
                 <CCard>
                         <CCardHeader className="card text-center" style={{fontWeight:"bold"}}>Energy Storage Information</CCardHeader>
                         <CCardBody style={{padding:5}}>
@@ -485,7 +485,7 @@ const Data = () => {
                             </CListGroup>
                         </CCardBody>
                     </CCard>
-                </CCol>   
+    </CCol>*/}   
             </CRow>
         </>
     )

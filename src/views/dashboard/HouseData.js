@@ -70,30 +70,30 @@ const Data = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
-                const pvPower = parseFloat(data[14].val) + parseFloat(data[13].val)
-                const gridVoltage=parseFloat(data[5].val).toFixed(0)
-                const gridCurrent=parseFloat(data[1].val).toFixed(0)
-                const systemOutputVoltage=parseFloat(data[10].val)
-                const systemOutputCurrent=parseFloat(data[8].val)
-                const gridPower = gridCurrent*gridVoltage
-                const systemOutputPower = systemOutputCurrent*systemOutputVoltage
+                const pvPower = parseFloat(data[40].val) + parseFloat(data[41].val)
+                const gridVoltage=parseFloat(data[26].val).toFixed(0)
+                const gridCurrent=parseFloat(data[29].val).toFixed(0)
+                const systemOutputVoltage=parseFloat(data[30].val)
+                const systemOutputCurrent=parseFloat(data[33].val)
+                const gridPower = parseFloat(data[27].val)
+                const systemOutputPower = parseFloat(data[31].val)
                 //TODO get drsPower
                 const drsPower = 0
                 setData({
-                    gridVoltage: gridVoltage + " " + data[5].unit,
-                    gridPower: gridPower + " " + data[13].unit,
-                    gridFrequency: data[2].val + " " + data[2].unit,
-                    gridCurrent: gridCurrent + " " + data[1].unit,
-                    systemOutputVoltage: systemOutputVoltage + " " + data[10].unit,
-                    systemOutputPower: systemOutputPower.toFixed(0) + " " + data[13].unit,
-                    systemOutputFrequency: "60 Hz",
-                    systemOutputCurrent: systemOutputCurrent + " " + data[8].unit,
-                    systemOutputLoadPercentage: data[22].val +" "+data[22].unit,
-                    batteryVoltage: data[17].val + " V",
-                    batteryStatus: data[20].val,
-                    PVInputVoltage1: data[15].val + " " + data[15].unit,
-                    PVInputVoltage2: data[9].val + " " + data[9].unit,
-                    PVPower: pvPower + " " + data[14].unit,
+                    gridVoltage: gridVoltage + " " + data[6].unit,
+                    gridPower: gridPower + " " + data[27].unit,
+                    gridFrequency: data[28].val + " " + data[28].unit,
+                    gridCurrent: gridCurrent + " " + data[29].unit,
+                    systemOutputVoltage: systemOutputVoltage + " " + data[30].unit,
+                    systemOutputPower: systemOutputPower.toFixed(0) + " " + data[31].unit,
+                    systemOutputFrequency: data[32].val +" "+data[32].unit,
+                    systemOutputCurrent: systemOutputCurrent + " " + data[33].unit,
+                    systemOutputLoadPercentage: data[34].val +" "+data[34].unit,
+                    batteryVoltage: data[37].val + " "+data[37].unit,
+                    batteryStatus: data[47].val,
+                    PVInputVoltage1: data[43].val + " " + data[43].unit,
+                    PVInputVoltage2: data[44].val + " " + data[44].unit,
+                    PVPower: pvPower + " " + data[40].unit,
                 })
                 if (pvPower === 0) {//for generation to stortera line
                     setGenerationLine({ showXarrow: true, animation: 0, showHead: false, showTail: false, color: '#E0E0E0' })
