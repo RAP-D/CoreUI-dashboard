@@ -20,14 +20,14 @@ import { useEffect,useState } from 'react'
 
 
 const Dashboard = () => {
-  const [date,setDate]=useState('0000-00-00');
+  const [timestamp,setTimestamp]=useState('0000-00-00');
   useEffect(() => {
     fetch(`https://dashboard-backend-rapid.herokuapp.com/house/B3E19380158221`, {
                 method: "get",
             })
             .then(response => response.json())
             .then(data => {
-              setDate(data[1].val.split(' ')[0])
+              setTimestamp(data[1].val)
             })
             .catch(err=>{
               console.log(err)
@@ -66,9 +66,9 @@ const Dashboard = () => {
           </>:null}
 
           <CNavItem className="ml-auto pt-2">
-            <CContainer  >
+            <CContainer>
               Status:<CBadge className="ml-2"color="success"> Online </CBadge>
-              <h1>Date : {date}</h1>
+              <h1>Timestamp : {timestamp}</h1>
             </CContainer>
           </CNavItem>
         </CNav>
