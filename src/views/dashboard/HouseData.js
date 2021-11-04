@@ -85,7 +85,7 @@ const Data = () => {
                     gridFrequency: data[2].val + " " + data[2].unit,
                     gridCurrent: gridCurrent + " " + data[1].unit,
                     systemOutputVoltage: systemOutputVoltage + " " + data[10].unit,
-                    systemOutputPower: systemOutputPower + " " + data[13].unit,
+                    systemOutputPower: systemOutputPower.toFixed(0) + " " + data[13].unit,
                     systemOutputFrequency: "60 Hz",
                     systemOutputCurrent: systemOutputCurrent + " " + data[8].unit,
                     systemOutputLoadPercentage: data[22].val +" "+data[22].unit,
