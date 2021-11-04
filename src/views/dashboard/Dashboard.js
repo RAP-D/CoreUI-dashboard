@@ -21,17 +21,25 @@ import { useEffect,useState } from 'react'
 
 const Dashboard = () => {
   const [timestamp,setTimestamp]=useState('0000-00-00');
+  const MINUTE_MS = 180000;
   useEffect(() => {
-    fetch(`https://dashboard-backend-rapid.herokuapp.com/house/B3E19380158221`, {
-                method: "get",
-            })
-            .then(response => response.json())
-            .then(data => {
-              setTimestamp(data[1].val)
-            })
-            .catch(err=>{
-              console.log(err)
-            })
+    const getData=()=>{
+      fetch(`https://dashboard-backend-rapid.herokuapp.com/house/B3E19380158221`, {
+        method: "get",
+      })
+      .then(response => response.json())
+      .then(data => {
+        setTimestamp(data[1].val)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    }
+    getData()
+    const interval = setInterval(() => {
+      getData();
+  }, MINUTE_MS);
+  return () => clearInterval(interval);
   }, []);
   const dataType=useHistory().location.pathname.split('/')[useHistory().location.pathname.split('/').length-2];
   return ( 
