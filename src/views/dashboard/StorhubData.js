@@ -114,7 +114,7 @@ const Data = () => {
     
     useEffect(() => {
         const getData=()=>{
-            fetch(`https://dashboard-backend-rapid.herokuapp.com/storhubs/${id}`, {
+            fetch(`https://stortera.herokuapp.com/storhubs/${id}`, {
                 method: "get",
             })
             .then(response => response.json())
