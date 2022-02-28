@@ -60,7 +60,7 @@ const DataDetail=()=>{
       ]
       useEffect(() => {
         setTableData([])
-        fetch(`https://dashboard-backend-rapid.herokuapp.com/raw_data/${id}`,{
+        fetch(`https://stortera.herokuapp.com/raw_data/${id}`,{
         method: "get",
         })
         .then(response=>response.json())
