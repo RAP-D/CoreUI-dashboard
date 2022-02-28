@@ -24,7 +24,7 @@ const Dashboard = () => {
   const MINUTE_MS = 180000;
   useEffect(() => {
     const getData=()=>{
-      fetch(`https://dashboard-backend-rapid.herokuapp.com/house/B3E19380158221`, {
+      fetch(`https://stortera.herokuapp.com/house/B3E19380158221`, {
         method: "get",
       })
       .then(response => response.json())
