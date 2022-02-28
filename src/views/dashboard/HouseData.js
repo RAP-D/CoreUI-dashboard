@@ -64,7 +64,7 @@ const Data = () => {
 
     useEffect(() => {
         const getData = () => {
-            fetch(`https://dashboard-backend-rapid.herokuapp.com/house/${id}`, {
+            fetch(`https://stortera.herokuapp.com/house/${id}`, {
                 method: "get",
             })
             .then(response => response.json())
