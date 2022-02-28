@@ -25,7 +25,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleSubmit=()=> {
-    fetch('https://dashboard-backend-rapid.herokuapp.com/login',{
+    fetch('https://stortera.herokuapp.com/login',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
