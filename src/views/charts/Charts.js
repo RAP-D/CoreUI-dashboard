@@ -50,7 +50,7 @@ const Charts = () => {
       date:'None'
     })
 
-    fetch(`https://dashboard-backend-rapid.herokuapp.com/ai_datapoints/${id}`,{
+    fetch(`https://stortera.herokuapp.com/ai_datapoints/${id}`,{
     method: "get",
     })
     .then(response=>response.json())
@@ -66,7 +66,7 @@ const Charts = () => {
     })
     .catch(err=>{console.log(err)})
 
-    fetch(`https://dashboard-backend-rapid.herokuapp.com/tommrrow_prediction/${id}`,{
+    fetch(`https://stortera.herokuapp.com/${id}`,{
     method: "get",
     })
     .then(response=>response.json())
